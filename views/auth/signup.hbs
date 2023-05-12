@@ -1,0 +1,33 @@
+<div>
+  <h3>Formulario de Registro</h3>
+  <div>
+    <form action="/signup" method="post">
+      {{! <input type="image" id=""></input> }}
+      <div>
+        <label for="firstName">Nombre</label>
+        <input type="text" name="firstName" />
+      </div>
+      <br />
+      <div>
+        <label for="lastName">Apellidos</label>
+        <input type="text" name="lastName" />
+      </div>
+      <br />
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" />
+      </div>
+      <br />
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" />
+      </div>
+      <br />
+      <button>Pá dentro</button>
+      <br>
+      {{#if this.errorMessage}}
+        <p style="color: red;">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+</div>

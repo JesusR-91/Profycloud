@@ -1,0 +1,22 @@
+<div class="mb-3">
+  <h3>Formulario de Acceso</h3>
+  <div>
+    <form action="/login" method="post" class="row g-3">
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" />
+      </div>
+      <br />
+      <div>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" />
+      </div>
+      <br />
+      <button>Pá dentro</button>
+      <br />
+      {{#if this.errorMessage}}
+        <p style="color: red;">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+</div>

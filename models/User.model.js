@@ -27,7 +27,7 @@ const userSchema = new Schema(
       default: false,
     },
     class: [{
-      type: Schema.Type.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Class',
     }],
   },

@@ -21,4 +21,7 @@ router.use('/class', classesRouter);
 const userRouter = require('./user.routes');
 router.use('/profile', userRouter);
 
+const authRouter = require('./auth.routes');
+router.use('/', authRouter);
+
 module.exports = router;
