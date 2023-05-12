@@ -6,12 +6,12 @@ const User = require("../models/User.model.js");
 //GET /class
 router.get("/", async (req, res, next) => {
   try {
-    const user = await User.findById(req.session.user).populate("class");
+    const user = await User.findById(req.session.user);
     const userClass = user.class;
-    const classes = await Class.find().populate('alumns');
+    const classes = await Class.find({_id: userClass}).populate('alumns');
+    console.log(classes);
     // console.log(userClass[0]);
-    // console.log(userClass[0]);
-    res.render("classes/index.hbs", { userClass, classes});
+    res.render("classes/index.hbs", { classes});
   } catch (error) {
     next(error);
   }
