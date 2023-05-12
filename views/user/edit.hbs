@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <h2>Edit your profile: </h2>
+        <div>
+            <label for="firstName">Name: </label>
+            <input type="text" name="firstName" value="{{this.firstName}}">
+        </div>
+        <br>
+
+        <div>
+            <label for="lastName">Last name: </label>
+            <input type="text" name="lastName" value="{{this.lastName}}">
+        </div>
+        <br>
+        <div>
+            <label for="email">Email: </label>
+            <input type="email" name="email" value="{{this.email}}">
+        </div>
+        <br>
+    </div>
+    <br>
+
+    <div>
+        <form action="/user/edit" method="post">
+            <button class="btn btn-secondary"><a href="/user"></a>Commit</button>
+        </form>
+    </div>
+
+</div>

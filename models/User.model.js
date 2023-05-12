@@ -17,11 +17,11 @@ const userSchema = new Schema(
     firstName: String,
     lastName: String,
     image: String,
-    rol: [{
-      type: String,
+    rol: {
+      type: [String],
       enum: ['professor', 'tutor'],
       default: 'professor',
-    }],
+    },
     admin: {
       type: Boolean,
       default: false,

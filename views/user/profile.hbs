@@ -1,0 +1,31 @@
+<div>
+    <div>
+        <h2>Your profile: </h2>
+        <br>
+
+        <div>
+            <h2>{{this.firstName}} {{this.lastName}}</h2>
+        </div>
+
+        <br>
+
+        <div>
+            <p>Email: {{this.email}}</p>
+
+            <br>
+
+            <div>
+                <h5>Your classes:</h5>
+                <ul>
+                    {{#each this.class}}
+                        <li><a href="/class/{{this._id}}">{{this.name}} {{this.subName}}</a></li>;
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    
+    <a href="/user/edit" class ="btn btn-secondary">Edit</a>
+
+</div>

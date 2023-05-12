@@ -19,7 +19,7 @@ const classesRouter = require('./classes.routes');
 router.use('/class', classesRouter);
 
 const userRouter = require('./user.routes');
-router.use('/profile', userRouter);
+router.use('/user', userRouter);
 
 const authRouter = require('./auth.routes');
 router.use('/', authRouter);

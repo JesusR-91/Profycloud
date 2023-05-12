@@ -75,21 +75,21 @@ router.post("/login", async (req, res, next) => {
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       console.log("Email y Pass no validos");
-      res.render("/login", {
+      res.render("auth/login", {
         errorMessage: "El email y password son obligatorios",
       });
       return;
     }
-    //! Usuario Existente
-    if (foundUser !== null) {
-      res.render("/login", {
+    //! Usuario Inexistente
+    if (foundUser === null) {
+      res.render("auth/login", {
         errorMessage: "Este correo no esta registrado",
       });
       return;
     }
     //!Encriptación contraseña
     if (isPasswordCorrect === false) {
-      res.render("/login", {
+      res.render("auth/login", {
         errorMessage: "Contraseña no valida",
       });
       return;
