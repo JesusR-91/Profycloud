@@ -1,1 +1,18 @@
-<h3>Caca</h3>
+<div>
+    <h2>Class list:</h2>
+    
+    <div>
+        {{#each userClass}}
+        <div>
+            <h5><a href="/class/{{_id}}">{{name}} {{subName}}</a></h5>
+            <ul>
+            {{#each alumns}}
+                <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
+            {{/each}}
+
+            </ul>
+            <br>
+        </div>
+        {{/each}}
+    </div>
+</div>

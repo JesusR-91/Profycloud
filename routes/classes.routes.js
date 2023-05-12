@@ -1,13 +1,17 @@
 const router = require("express").Router();
 const Class = require("../models/Class.model.js");
+const Alumn = require("../models/Alumn.model.js");
+const User = require("../models/User.model.js");
 
 //GET /class
 router.get("/", async (req, res, next) => {
   try {
-    const allClasses = await Class.find();
-    res.render("classes/index.hbs", {
-      allClasses: allClasses,
-    });
+    const user = await User.findById(req.session.user).populate("class");
+    const userClass = user.class;
+    const classes = await Class.find().populate('alumns');
+    // console.log(userClass[0]);
+    // console.log(userClass[0]);
+    res.render("classes/index.hbs", { userClass, classes});
   } catch (error) {
     next(error);
   }
@@ -17,27 +21,22 @@ router.get("/", async (req, res, next) => {
 router.get("/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClase);
-    res.render("classes/class.hbs", { oneClass: oneClass });
+    const alumnsInClass = await Alumn.find({class: req.params.idClase});
+    console.log(alumnsInClass)
+    res.render("classes/class.hbs", { oneClass, alumnsInClass });
   } catch (error) {
     next(error);
   }
 });
 
 //POST /class/:idClase
-router.post("/:idClass", async(req, res, next)=>{
-    try {
-        await Class.findByIdAndUpdate(req.params.idClase)
-        res.redirect("/class")
-    } catch (error) {
-        next(error)
-    }
-})
-
-
-
-
-
-
-
+router.post("/:idClass", async (req, res, next) => {
+  try {
+    await Class.findByIdAndUpdate(req.params.idClase);
+    res.redirect("/class");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

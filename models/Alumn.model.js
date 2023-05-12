@@ -4,10 +4,7 @@ const alumnSchema = new Schema ({
     firstName: String,
     lastName: String,
     image: String,
-    class: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Class',
-    }]
+    class: String,
 })
 
 const Alumn = model('Alumn', alumnSchema);
