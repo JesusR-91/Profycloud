@@ -19,7 +19,7 @@ router.get ('/', async (req, res, next) =>{
     } catch (error) { next(error)}
 })
 
-//GET '//:idProfesor/edit' => render the view
+//GET '/edit' => render the view
 
 router.get ('/edit', async (req, res, next) =>{
     try {
@@ -29,17 +29,17 @@ router.get ('/edit', async (req, res, next) =>{
     } catch (error) { next(error)}
 })
 
-//POST '/:idProfesor/edit' => edit the info
+//POST '/edit' => edit the info
 
-
-
-
-
-
-
-
-
-
+router.post('/edit', async (req, res, next) =>{
+    try {
+        const {email, password, firstName, lastName, image} = req.body;
+        const userActive = req.session.user._id;
+        await User.findByIdAndUpdate (userActive, {email, password, firstName, lastName, image});
+    } catch (error) {
+        next(error);
+    }
+})
 
 
 

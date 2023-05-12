@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const Alumn = require("../models/Alumn.model.js");
 
-//GET /profile/alumn/create =>create Alumns
+// const {isProfOrTutor} = require('../middlewares/middlewares');
+
+
+//GET /alumn/create =>create Alumns
 router.get("/create", async (req, res, next) => {
   try {
     res.render("alumn/create.hbs");
@@ -10,7 +13,7 @@ router.get("/create", async (req, res, next) => {
   }
 });
 
-//POST /profile/alumn/create
+//POST /alumn/create
 router.post("/create", async (req, res, next) => {
   try {
     const { firstName, lastName, image } = req.body;
@@ -21,10 +24,10 @@ router.post("/create", async (req, res, next) => {
   }
 });
 
-//GET /profile/:idAlumno/details
+//GET /alumn/:idAlumno/details
 router.get("/:idAlumn/details", (req, res, next) => {
   const { firstName, lastName, image } = req.body;
-
+  
   Alumn.findById(req.params.idAlumn)
     .populate("class")
     .then((alumnDetails) => {
@@ -37,7 +40,7 @@ router.get("/:idAlumn/details", (req, res, next) => {
     });
 });
 
-//GET /profile/:idAlumn/edit
+//GET /alumn/:idAlumn/edit
 router.get("/:idAlumn/edit", async (req, res, next) => {
   try {
     const editAlumn = await Alumn.findById(req.params.idAlumn).populate(
@@ -49,7 +52,7 @@ router.get("/:idAlumn/edit", async (req, res, next) => {
   }
 });
 
-//POST /profile/:idAlumn/edit
+//POST /alumn/:idAlumn/edit
 router.post("/:idAlumn/edit", async (req, res, next) => {
   try {
     const { firstName, lastName, image } = req.body;
@@ -64,7 +67,7 @@ router.post("/:idAlumn/edit", async (req, res, next) => {
   }
 });
 
-//POST "/profile/:idAlumn/delete"
+//POST "/alumn/:idAlumn/delete"
 router.post(":idAlumn/delete", async (req, res, next) => {
   try {
     Alumn.findByIdAndDelete(req.params.idAlumn);

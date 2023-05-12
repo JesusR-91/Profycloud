@@ -22,6 +22,10 @@ const userSchema = new Schema(
       enum: ['professor', 'tutor'],
       default: 'professor',
     },
+    tutorClass: {
+      type: Schema.Types.ObjectId,
+      ref: 'Class',
+    },
     admin: {
       type: Boolean,
       default: false,
