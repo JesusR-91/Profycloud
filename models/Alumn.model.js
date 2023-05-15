@@ -5,6 +5,8 @@ const alumnSchema = new Schema ({
     lastName: String,
     image: String,
     class: String,
+    contactEmail: String,
+    contactPhone: Number,
 })
 
 const Alumn = model('Alumn', alumnSchema);
