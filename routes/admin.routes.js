@@ -24,6 +24,10 @@ router.get("/:idUser", async (req, res, next) => {
   }
 });
 
+
+//GET /admin/:idUser/edit
+
+
 //POST /admin/:idUser/edit
 router.post("/:idUser/edit", async (req, res, next) => {
   try {

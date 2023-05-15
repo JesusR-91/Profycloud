@@ -1,38 +1,36 @@
 <div>
+  <h2>{{oneUser.firstName}}'s profile: </h2>
+  <br />
+  <img src={{oneUser.image}} alt="profile-photo" width="200px" />
+  <div>
+
+  </div>
+
+  <div>
     <div>
-        <h2>{{oneUser.firstName}} profile: </h2>
-        <br>
-            <img src= {{oneUser.image}} alt="profile-photo" width="200px">
-        <div>
+      <h2>{{oneUser.firstName}} {{oneUser.lastName}}</h2>
+    </div>
 
-        </div>
+    <br />
 
-        <div>
-            <div>
-                <h2>{{oneUser.firstName}} {{oneUser.lastName}}</h2>
-            </div>
+    <div>
+      <p>Email: {{oneUser.email}}</p>
 
-            <br>
+      <br />
 
-            <div>
-                <p>Email: {{oneUser.email}}</p>
+      <div>
+        <h5>Your classes:</h5>
+        <ul>
+          {{#each class}}
+            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
 
-                <br>
+    <br />
+  </div>
 
-                <div>
-                    <h5>Your classes:</h5>
-                    <ul>
-                        {{#each class}}
-                            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-       
-            <br>
-        </div>
-    
-    <a href="/user/edit" class ="btn btn-secondary">Edit</a>
+  <a href="/user/edit" class="btn btn-secondary">Edit</a>
 
 </div>
-
