@@ -39,4 +39,10 @@ router.post("/:idClass", async (req, res, next) => {
   }
 });
 
+//GET '/class/new' => render the view
+
+
+
+// POST '/class/new' => add new classes
+
 module.exports = router;

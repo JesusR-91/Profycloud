@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User.model');
-const Class = require ('../models/Class.model')
-
-const {isProfOrTutor} = require('../middlewares/middlewares');
-const uploader = require('../middlewares/cloudinary.middleware.js')
+const Class = require ('../models/Class.model');
+const uploader = require('../middlewares/cloudinary.middleware.js');
 
 
 //Global variables

@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const Alumn = require("../models/Alumn.model.js");
 
-const uploader = require('../middlewares/cloudinary.middleware.js')
-
-// const {isProfOrTutor} = require('../middlewares/middlewares');
+const uploader = require('../middlewares/cloudinary.middleware.js');
+const User = require("../models/User.model.js");
 
 
 //GET /alumn/create =>create Alumns
@@ -27,19 +26,24 @@ router.post("/create", async (req, res, next) => {
 });
 
 //GET /alumn/:idAlumno/details
-router.get("/:idAlumn/details", (req, res, next) => {
-  const { firstName, lastName, image } = req.body;
+router.get("/:idAlumn/details", async(req, res, next) => {
+  try {
+    const foundUser = await User.findById(req,session.user._id).populate('tutorClass');
+    const alumnDetails = await Alumn.findById(req.params.idAlumn);
+    const {tutorClass} = foundUser;
+    let isTutor = false;
+    
+    if ((`${tutorClass.name} ${tutorClass.subName}`) === alumnDetails.class){
+      isTutor = true;
+    } 
+     
+    res.render("alumn/profile.hbs", {alumnDetails, isTutor});
+
+  } catch (error) {
+    next(error)
+  }
+
   
-  Alumn.findById(req.params.idAlumn)
-    .populate("class")
-    .then((alumnDetails) => {
-      res.render("alumn/profile.hbs", {
-        alumnDetails: alumnDetails,
-      });
-    })
-    .catch((error) => {
-      next(error);
-    });
 });
 
 //GET /alumn/:idAlumn/edit

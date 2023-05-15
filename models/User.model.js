@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     email: {
@@ -16,7 +15,10 @@ const userSchema = new Schema(
     },
     firstName: String,
     lastName: String,
-    image: String,
+    image: {
+      type:String,
+      default: "public/images/favicon",
+    },
     rol: {
       type: [String],
       enum: ['professor', 'tutor'],
