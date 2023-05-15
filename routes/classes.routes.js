@@ -13,8 +13,6 @@ router.get("/", async (req, res, next) => {
     const user = await User.findById(req.session.user);
     const userClass = user.class;
     const classes = await Class.find({_id: userClass}).populate('alumns');
-    console.log(classes);
-    // console.log(userClass[0]);
     res.render("classes/index.hbs", { classes});
   } catch (error) {
     next(error);

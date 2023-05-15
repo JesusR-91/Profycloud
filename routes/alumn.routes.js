@@ -31,12 +31,12 @@ router.post("/create", async (req, res, next) => {
 //GET /alumn/:idAlumno/details
 router.get("/:idAlumn/details", async(req, res, next) => {
   try {
-    const foundUser = await User.findById(req,session.user._id).populate('tutorClass');
+    const foundUser = await User.findById(req.session.user._id).populate('tutorClass');
     const alumnDetails = await Alumn.findById(req.params.idAlumn);
     const {tutorClass} = foundUser;
     let isTutor = false;
 
-    if ((`${tutorClass.name} ${tutorClass.subName}`) === alumnDetails.class){
+    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === alumnDetails.class)){
       isTutor = true;
     } 
      

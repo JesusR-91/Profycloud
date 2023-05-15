@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/User.model.js");
 const bcrypt = require("bcryptjs");
-const uploader = require("../middlewares/middlewares.js");
+
+
 //GET "/signup"
 router.get("/signup", async (req, res, next) => {
   try {
@@ -19,7 +20,6 @@ router.post("/signup", async (req, res, next) => {
     const foundEmail = await User.findOne({ email: email });
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
-      console.log("Email y Pass no validos");
       res.render("auth/signup", {
         errorMessage: "El email y password son obligatorios",
       });
@@ -74,7 +74,6 @@ router.post("/login", async (req, res, next) => {
     );
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
-      console.log("Email y Pass no validos");
       res.render("auth/login", {
         errorMessage: "El email y password son obligatorios",
       });

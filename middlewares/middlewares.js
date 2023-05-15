@@ -25,4 +25,4 @@ const updateLocals = (req, res, next) =>{
   next();
 }
 
-module.exports = {isLoggedIn, updateLocals}
+module.exports = {isLoggedIn, updateLocals, isAdmin}
