@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Class = require("../models/Class.model");
-
 const { isAdmin } = require("../middlewares/middlewares");
+/* router.use(isAdmin); */
 
 //GET /admin
 router.get("/", async (req, res, next) => {
@@ -17,25 +17,28 @@ router.get("/", async (req, res, next) => {
 //GET /admin/:idUser
 router.get("/:idUser", async (req, res, next) => {
   try {
-    const oneUser = await User.findById(req.params.idUser).populate("class");
-    res.render("admin/users", { oneUser: oneUser });
+    const oneUser = await User.findById(req.params.idUser);
+    res.render("admin/users", {oneUser});
   } catch (error) {
     next(error);
   }
 });
 
-
 //GET /admin/:idUser/edit
-
+router.get("/:idUser/edit", async (req, res, next) => {
+  try {
+    const editUser = await User.findById(req.params.idUser).populate("class");
+    res.render("admin/users-edit.hbs", editUser);
+  } catch (error) {next(error)}
+});
 
 //POST /admin/:idUser/edit
 router.post("/:idUser/edit", async (req, res, next) => {
   try {
+
     await User.findByIdAndUpdate(req.params.idUser);
     res.render("admin/users-edit.hbs");
-  } catch (error) {
-    next(error);
-  }
+  } catch (error) {next(error)}
 });
 
 module.exports = router;
