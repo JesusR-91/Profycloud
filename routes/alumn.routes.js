@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Alumn = require("../models/Alumn.model.js");
 
+const uploader = require('../middlewares/cloudinary.middleware.js')
+
 // const {isProfOrTutor} = require('../middlewares/middlewares');
 
 
@@ -56,10 +58,16 @@ router.get("/:idAlumn/edit", async (req, res, next) => {
 router.post("/:idAlumn/edit", async (req, res, next) => {
   try {
     const { firstName, lastName, image } = req.body;
+    let profileImg = "";
+    if (req.file === undefined) {
+        profileImg = image;
+    } else {
+        profileImg = req.file.path
+    }
     await Alumn.findByIdAndUpdate(req.params.idAlumn, {
       firstName,
       lastName,
-      image,
+      image: profileImg,
     });
     res.redirect("alumn/edit.hbs");
   } catch (error) {
@@ -68,7 +76,7 @@ router.post("/:idAlumn/edit", async (req, res, next) => {
 });
 
 //POST "/alumn/:idAlumn/delete"
-router.post(":idAlumn/delete", async (req, res, next) => {
+router.post(":idAlumn/delete", uploader.single("image"), async (req, res, next) => {
   try {
     Alumn.findByIdAndDelete(req.params.idAlumn);
     res.redirect("alumn/edit.hbs");
