@@ -1,0 +1,36 @@
+<div>
+  <h2>{{oneUser.firstName}}'s profile: </h2>
+  <br />
+  <img src={{oneUser.image}} alt="profile-photo" width="200px" />
+  <div>
+
+  </div>
+
+  <div>
+    <div>
+      <h2>{{oneUser.firstName}} {{oneUser.lastName}}</h2>
+    </div>
+
+    <br />
+
+    <div>
+      <p>Email: {{oneUser.email}}</p>
+
+      <br />
+
+      <div>
+        <h5>Your classes:</h5>
+        <ul>
+          {{#each class}}
+            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    <br />
+  </div>
+
+  <a href="/user/edit" class="btn btn-secondary">Edit</a>
+
+</div>
