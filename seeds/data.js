@@ -75,17 +75,16 @@ const Alumn = require('../models/Alumn.model');
 
 require('../db/index');
 
-// User.insertMany(professors)
-// .then(()=>{
-// console.log('Usuarios metidos en base de dato')
-// })
-// .catch(err => console.log(err))
-
-// Class.insertMany([classes[1]])
-// .then(()=>{
-// console.log('Clases metidos en base de dato')
-// })
-// .catch(err => console.log(err))
+ User.insertMany(professors)
+ .then(()=>{
+ console.log('Usuarios metidos en base de dato')
+ })
+.catch(err => console.log(err))
+ Class.insertMany([classes[1]])
+ .then(()=>{
+ console.log('Clases metidos en base de dato')
+ })
+ .catch(err => console.log(err))
 
 Alumn.insertMany(alumns.slice(0, 8))
 .then(()=>{
