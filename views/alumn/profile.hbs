@@ -1,11 +1,29 @@
 <div>
+    <div>
+        <h2>{{firstName}} {{ lastName}} profile: </h2>
+        <br>
+        <div>
+            <img src= {{image}} alt="profile-photo" width="200px">
+        </div>
 
+        <br>
 
+        <div>
+            <div>
+                <p>Class: {{classroom}}</p>
+                <p>Contact person: {{contactPerson}}</p>
+                <br>
+                <p>Contact email: {{contactEmail}}</p>
+                <br>
+                <p>Contact phone: {{contactEmail}}</p>
+                <br>
+            </div>
+       
+            <br>
+        </div>
 
-
-
-    {{#if isTutor}}
-        <button><a href="/alumn/{{this._id}}/edit">Edit</a></button>
+    {{#if this.isTutor}}
+        <button><a href="/alumn/{{./_id}}/edit">Edit</a></button>
     {{/if}}
 
 

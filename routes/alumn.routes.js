@@ -35,12 +35,13 @@ router.get("/:idAlumn/details", async(req, res, next) => {
     const alumnDetails = await Alumn.findById(req.params.idAlumn);
     const {tutorClass} = foundUser;
     let isTutor = false;
+    const {_id, firstName,lastName, image, classroom, contactEmail, contactPerson, contactPhone } = alumnDetails;
 
-    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === alumnDetails.class)){
+    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === classroom)){
       isTutor = true;
     } 
      
-    res.render("alumn/profile.hbs", {alumnDetails, isTutor});
+    res.render("alumn/profile.hbs", {_id, firstName, lastName, image, classroom, contactEmail, contactPerson, contactPhone, isTutor});
 
   } catch (error) {
     next(error)
@@ -52,10 +53,8 @@ router.get("/:idAlumn/details", async(req, res, next) => {
 //GET /alumn/:idAlumn/edit
 router.get("/:idAlumn/edit", async (req, res, next) => {
   try {
-    const editAlumn = await Alumn.findById(req.params.idAlumn).populate(
-      "class"
-    );
-    res.render("alumn/edit.hbs");
+    const editAlumn = await Alumn.findById(req.params.idAlumn);
+    res.render("alumn/edit.hbs", editAlumn);
   } catch (error) {
     next(error);
   }

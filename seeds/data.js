@@ -10,15 +10,15 @@ const classes = [
 ]
 
 const alumns =[
-    {firstName: "Juan", lastName: "Bolsón", class: "1 A"},
-    {firstName: "Pedro", lastName: "Skywalker", class: "1 A"},
-    {firstName: "Jorge", lastName: "Vader", class: "1 A"},
-    {firstName: "Jesús", lastName: "González", class: "1 A"},
-    {firstName: "Jonathan", lastName: "Benítez", class: "2 A"},
-    {firstName: "Maisha", lastName: "Ramírez", class: "2 A"},
-    {firstName: "Jorge", lastName: "Ruiz", class: "2 A"},
-    {firstName: "Carol", lastName: "Pérez", class: "2 A"},
-    {firstName: "Jorge", lastName: "González", class:"2 A"},
+    {firstName: "Juan", lastName: "Bolsón", classroom: "1 A", contactEmail: "juanito@juanito.com", contactPerson: "Juanito", contactPhone: 888999777 },
+    {firstName: "Pedro", lastName: "Skywalker", classroom: "1 A", contactEmail: "pedrito@pedrito.com", contactPerson: "Pedrito", contactPhone: 888999777 },
+    {firstName: "Jorge", lastName: "Vader", classroom: "1 A", contactEmail: "jorgito@jorgito.com", contactPerson: "Jorgito", contactPhone: 888999777 },
+    {firstName: "Jesús", lastName: "González", classroom: "1 A", contactEmail: "jesusito@jesusito.com", contactPerson: "Jesusito", contactPhone: 888999777 },
+    {firstName: "Jonathan", lastName: "Benítez", classroom: "2 A", contactEmail: "jonathancito@jonathancito.com", contactPerson: "Jhonatancito", contactPhone: 888999777 },
+    {firstName: "Maisha", lastName: "Ramírez", classroom: "2 A", contactEmail: "maishacito@maishacito.com", contactPerson: "Maishacito", contactPhone: 888999777},
+    {firstName: "Jorge", lastName: "Ruiz", classroom: "2 A", contactEmail: "jorgito@jorgito.es", contactPerson: "Jorgito", contactPhone: 888999777},
+    {firstName: "Carol", lastName: "Pérez", classroom: "2 A", contactEmail: "carolita@carolita.com", contactPerson: "Carolita", contactPhone: 888999777 },
+    {firstName: "Jorge", lastName: "González", classroom:"2 A", contactEmail: "jorgecito@jorgecito.net", contactPerson: "Jorgecito", contactPhone: 888999777 },
     {firstName: "Ana", lastName: "Pérez", class: []},
     {firstName: "Rosa", lastName: "Navarro", class: []},
     {firstName: "Andrea", lastName: "Ramírez", class: []},
@@ -81,18 +81,18 @@ require('../db/index');
 // })
 // .catch(err => console.log(err))
 
-Class.insertMany([classes[1]])
-.then(()=>{
-console.log('Clases metidos en base de dato')
-})
-.catch(err => console.log(err))
-
-// Alumn.insertMany([alumns[4], alumns[5], alumns[6], alumns[7]])
+// Class.insertMany([classes[1]])
 // .then(()=>{
-// console.log('Alumnos metidos en base de dato')
-// mongoose.connection.close();
+// console.log('Clases metidos en base de dato')
 // })
 // .catch(err => console.log(err))
+
+Alumn.insertMany(alumns.slice(0, 8))
+.then(()=>{
+console.log('Alumnos metidos en base de dato')
+mongoose.connection.close();
+})
+.catch(err => console.log(err))
 
 
 

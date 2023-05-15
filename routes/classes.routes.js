@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClase);
-    const alumnsInClass = await Alumn.find({class: req.params.idClase});
+    const alumnsInClass = await Alumn.find({classroom: req.params.idClase});
     const activeUser = await User.findById(req.session.user._id);
     res.render("classes/class.hbs", { oneClass, alumnsInClass });
   } catch (error) {
