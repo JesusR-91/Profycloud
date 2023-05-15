@@ -32,10 +32,9 @@ router.get ('/edit', async (req, res, next) =>{
 router.post('/edit', uploader.single("image"), async (req, res, next) =>{
     try {
         const {email, password, firstName, lastName} = req.body;
-        const userActive = req.session.user._id;
         let profileImg = "";
         if (req.file === undefined) {
-            profileImg = userActive.img;
+            profileImg = undefined;
         } else {
             profileImg = req.file.path
         }
