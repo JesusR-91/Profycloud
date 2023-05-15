@@ -52,7 +52,7 @@ router.post("/signup", async (req, res, next) => {
       image,
     });
     //!Redirect
-    res.redirect("/");
+    res.redirect("/login");
   } catch (error) {
     next(error);
   }
