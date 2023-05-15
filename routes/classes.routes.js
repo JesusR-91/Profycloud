@@ -3,7 +3,7 @@ const Class = require("../models/Class.model.js");
 const Alumn = require("../models/Alumn.model.js");
 const User = require("../models/User.model.js");
 const { isLoggedIn, isAdmin } = require("../middlewares/middlewares");
-const uploader = require('../middlewares/cloudinary.middleware.js');
+const uploader = require("../middlewares/cloudinary.middleware.js");
 
 router.use(isLoggedIn);
 
@@ -22,8 +22,8 @@ router.get("/", async (req, res, next) => {
 //GET /class/:idClase
 router.get("/:idClass", async (req, res, next) => {
   try {
-    const oneClass = await Class.findById(req.params.idClase);
-    const alumnsInClass = await Alumn.find({classroom: req.params.idClase});
+    const oneClass = await Class.findById(req.params.idClass);
+    const alumnsInClass = await Alumn.find({ classroom: req.params.idClass });
     const activeUser = await User.findById(req.session.user._id);
     res.render("classes/class.hbs", { oneClass, alumnsInClass, activeUser });
   } catch (error) {
@@ -34,7 +34,7 @@ router.get("/:idClass", async (req, res, next) => {
 //POST /class/:idClase
 router.post("/:idClass", async (req, res, next) => {
   try {
-    await Class.findByIdAndUpdate(req.params.idClase);
+    await Class.findByIdAndUpdate(req.params.idClass);
     res.redirect("/class");
   } catch (error) {
     next(error);
@@ -42,27 +42,24 @@ router.post("/:idClass", async (req, res, next) => {
 });
 
 //GET '/class/new' => render the view
-router.get("/new", isAdmin, async (req, res, next) => {
+router.get("/clase/new", isAdmin, async (req, res, next) => {
   try {
     const listUsers = await User.findById(req.params._id);
     const listAlumns = await Alumn.findById(req.params._id);
-    res.render("classes/new-class", {listUsers, listAlumns});
+    res.render("classes/new-class.hbs", { listUsers, listAlumns });
   } catch (error) {
     next(error);
   }
 });
 // POST '/class/new' => add new classes
-router.post("/new", uploader.single("image"), async(req, res,next)=>{
-try {
-  const {name, subName, Subject, alumns} = req.body
-  await Class.create({name, subName, Subject, alumns})
-  res.redirect("/class")
-  
-  
-} catch (error) {
-  next(error)
-}
-})
-
+router.post("/clase/new", uploader.single("image"), async (req, res, next) => {
+  try {
+    const { name, subName, Subject, alumns } = req.body;
+    await Class.create({ name, subName, Subject, alumns });
+    res.redirect("/class");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
