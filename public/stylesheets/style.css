@@ -1,12 +1,26 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f1ead7;
 }
 
 a {
   color: #00b7ff;
+
 }
 
 h1 {
   color: 15px;
+}
+
+.web {
+  background-color: #f1ead7;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
 }

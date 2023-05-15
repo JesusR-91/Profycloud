@@ -1,18 +1,19 @@
-<div class="mb-3">
+<div class="mb-3 d-flex p-2 flex-column mb-3 align-items-center card mb-3">
   <h3>Formulario de Acceso</h3>
+  <br>
   <div>
-    <form action="/login" method="post" class="row g-3">
-      <div class="col-md-6">
+    <form action="/login" method="post" class="row g-3" style="width: 400px;">
+      <div class="col-md-6 ">
         <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" />
+        <input type="email" name="email" class="form-control"/>
       </div>
       <br />
       <div>
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" />
+        <input type="password" name="password" class="form-control"/>
       </div>
       <br />
-      <button>Pá dentro</button>
+      <button class="btn btn-primary btn-lg">Pá dentro</button>
       <br />
       {{#if this.errorMessage}}
         <p style="color: red;">{{errorMessage}}</p>

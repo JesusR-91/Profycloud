@@ -81,8 +81,34 @@ router.post("/:idAlumn/edit", uploader.single("image"), async (req, res, next) =
   }
 });
 
+//GET '/create'
+
+router.get('/create', async (res, req, next) =>{
+  try {
+    res.render('/alumn/create');
+  } catch (error) { next(error)}
+})
+
+//POST '/create'
+
+router.post('/create',uploader.single("image"), async (res, req, next) =>{
+  try {
+    const {firstName, lastName, classroom, contactEmail, contactPerson, contactPhone} = req.body;
+
+    let profileImg = "";
+    if (req.file === undefined) {
+        profileImg = undefined;
+    } else {
+        profileImg = req.file.path;
+    }
+    
+    await Alumn.create({firstName, lastName, classroom, contactEmail, contactPerson, contactPhone, image: profileImg});
+    res.redirect('/class');
+  } catch (error) {next(error)}
+})
+
 //POST "/alumn/:idAlumn/delete"
-router.post("/:idAlumn/delete", uploader.single("image"), async (req, res, next) => {
+router.post("/:idAlumn/delete", async (req, res, next) => {
   try {
     await Alumn.findByIdAndDelete(req.params.idAlumn);
     res.redirect("/class");

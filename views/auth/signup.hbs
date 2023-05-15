@@ -1,30 +1,25 @@
-<div>
+<div class="mb-3 d-flex p-2 flex-column mb-3 justify-content-center align-items-center card mb-3">
   <h3>Formulario de Registro</h3>
-  <div>
-    <form action="/signup" method="post">
-      {{! <input type="image" id=""></input> }}
-      <div>
-        <label for="firstName">Nombre</label>
-        <input type="text" name="firstName" />
+  <br>
+  <div class="d-flex p-2 flex-column mb-3 justify-content-center align-items-center">
+    <form action="/signup" method="post" class="row g-3">
+      <div class="col-md-6">
+        <label for="firstName" class="form-label">Name</label>
+        <input type="text" name="firstName" class="form-control"/>  
       </div>
-      <br />
-      <div>
-        <label for="lastName">Apellidos</label>
-        <input type="text" name="lastName" />
+      <div class="col-md-6">
+        <label for="lastName" class="form-label">First name</label>
+        <input type="text" name="lastName" class="form-control"/>
       </div>
-      <br />
-      <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" />
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" class="form-control"/>
       </div>
-      <br />
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" />
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control"/>
       </div>
-      <br />
-      <button>Pá dentro</button>
-      <br>
+      <button class="btn btn-primary btn-lg" style="width: 200;">Pá dentro</button>
       {{#if this.errorMessage}}
         <p style="color: red;">{{errorMessage}}</p>
       {{/if}}

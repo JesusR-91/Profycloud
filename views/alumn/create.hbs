@@ -1,3 +1,54 @@
 <div>
-    
+    <div>
+
+    <form action="/alumn/create" method="post" enctype='multipart/form-data'>
+            <div>
+                <label for="image" class="form-label">Profile photo: </label>
+                <input type="file" name="image" class="form-control">
+
+            </div>
+
+            <br>
+
+            <div>
+                <div>
+                    <label for="firstName">Name: </label>
+                    <input type="text" name="firstName">
+                </div>
+                <br>
+
+                <div>
+                    <label for="lastName">Last name: </label>
+                    <input type="text" name="lastName">
+                </div>
+                <br>
+                <div>
+                    <label for="contactPerson">Contact person: </label>
+                    <input type="test" name="contactPerson">
+                </div>
+                <br>
+                <div>
+                    <label for="contactEmail">Contact email: </label>
+                    <input type="text" name="contactEmail">
+                </div>
+                <br>
+                <div>
+                    <label for="contactPhone">Contact phone: </label>
+                    <input type="text" name="contactPhone">
+                </div>
+                <br>
+                </div>
+                <br>
+
+                <div>
+                    <button class="btn btn-secondary">Commit</button>
+                </div>
+            </div>
+        </form>
+
+        <form action="/alumn/{{_id}}/delete" method="post">
+            <button>Delete</button>
+        </form>
+
+</div>
 </div>

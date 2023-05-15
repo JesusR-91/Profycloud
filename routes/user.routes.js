@@ -38,7 +38,7 @@ router.post('/edit', uploader.single("image"), async (req, res, next) =>{
         } else {
             profileImg = req.file.path
         }
-        await User.findByIdAndUpdate (userActive, {email, password, firstName, lastName, image: profileImg});
+        await User.findByIdAndUpdate (req.session.user._id, {email, password, firstName, lastName, image: profileImg});
         res.redirect('/user')
     } catch (error) {
         next(error);

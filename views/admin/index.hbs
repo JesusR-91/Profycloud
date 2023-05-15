@@ -1,8 +1,15 @@
-<h2>Lista de Usuarios</h2>
+<div>
 
-{{#each allUsers}}
+    <h2>Lista de Usuarios</h2>
 
-<li><a href="admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
-<br>
+    <div>
+        {{#each allUsers}}
 
-{{/each}}
+        <li><a href="admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+        <br>
+
+        {{/each}}
+    </div>
+
+
+</div>
