@@ -54,6 +54,10 @@ router.get("/:idAlumn/details", async(req, res, next) => {
 router.get("/:idAlumn/edit", async (req, res, next) => {
   try {
     const editAlumn = await Alumn.findById(req.params.idAlumn);
+    const foundUser = await User.findById(req.session.user._id).populate('tutorClass');
+    const {tutorClass} = foundUser;
+    let isTutor = false;
+    const {_id, firstName,lastName, image, classroom, contactEmail, contactPerson, contactPhone } = editAlumn;
     res.render("alumn/edit.hbs", editAlumn);
   } catch (error) {
     next(error);
@@ -61,31 +65,27 @@ router.get("/:idAlumn/edit", async (req, res, next) => {
 });
 
 //POST /alumn/:idAlumn/edit
-router.post("/:idAlumn/edit", async (req, res, next) => {
+router.post("/:idAlumn/edit", uploader.single("image"), async (req, res, next) => {
   try {
-    const { firstName, lastName, image } = req.body;
+    const { firstName, lastName, classroom, contactEmail, contactPerson, contactPhone} = req.body;
     let profileImg = "";
     if (req.file === undefined) {
-        profileImg = image;
+        profileImg = undefined;
     } else {
         profileImg = req.file.path
     }
-    await Alumn.findByIdAndUpdate(req.params.idAlumn, {
-      firstName,
-      lastName,
-      image: profileImg,
-    });
-    res.redirect("alumn/edit.hbs");
+    await Alumn.findByIdAndUpdate(req.params.idAlumn, {firstName, lastName, image: profileImg, classroom, contactEmail, contactPerson, contactPhone});
+    res.redirect(`/alumn/${req.params.idAlumn}/details`);
   } catch (error) {
     next(error);
   }
 });
 
 //POST "/alumn/:idAlumn/delete"
-router.post(":idAlumn/delete", uploader.single("image"), async (req, res, next) => {
+router.post("/:idAlumn/delete", uploader.single("image"), async (req, res, next) => {
   try {
-    Alumn.findByIdAndDelete(req.params.idAlumn);
-    res.redirect("alumn/edit.hbs");
+    await Alumn.findByIdAndDelete(req.params.idAlumn);
+    res.redirect("/class");
   } catch (error) {
     next(error);
   }
