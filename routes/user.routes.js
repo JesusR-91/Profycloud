@@ -1,10 +1,9 @@
+//Global variables
+
 const router = require('express').Router();
 const User = require('../models/User.model');
 const Class = require ('../models/Class.model');
 const uploader = require('../middlewares/cloudinary.middleware.js');
-
-
-//Global variables
 
 
 //GET  '/' => render the view
