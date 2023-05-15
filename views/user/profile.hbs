@@ -2,29 +2,35 @@
     <div>
         <h2>Your profile: </h2>
         <br>
-
+            <img src= {{image}} alt="profile-photo" width="200px">
         <div>
-            <h2>{{this.firstName}} {{this.lastName}}</h2>
+
         </div>
 
-        <br>
-
         <div>
-            <p>Email: {{this.email}}</p>
+            <div>
+                <h2>{{firstName}} {{lastName}}</h2>
+            </div>
 
             <br>
 
             <div>
-                <h5>Your classes:</h5>
-                <ul>
-                    {{#each this.class}}
-                        <li><a href="/class/{{this._id}}">{{this.name}} {{this.subName}}</a></li>
-                    {{/each}}
-                </ul>
+                <p>Email: {{email}}</p>
+
+                <br>
+
+                <div>
+                    <h5>Your classes:</h5>
+                    <ul>
+                        {{#each class}}
+                            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
+       
+            <br>
         </div>
-    </div>
-    <br>
     
     <a href="/user/edit" class ="btn btn-secondary">Edit</a>
 

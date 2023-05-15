@@ -3,6 +3,7 @@ const User = require('../models/User.model');
 const Class = require ('../models/Class.model')
 
 const {isProfOrTutor} = require('../middlewares/middlewares');
+const uploader = require('../middlewares/cloudinary.middleware.js')
 
 
 //Global variables
@@ -31,11 +32,18 @@ router.get ('/edit', async (req, res, next) =>{
 
 //POST '/edit' => edit the info
 
-router.post('/edit', async (req, res, next) =>{
+router.post('/edit', uploader.single("image"), async (req, res, next) =>{
     try {
-        const {email, password, firstName, lastName, image} = req.body;
+        const {email, password, firstName, lastName} = req.body;
         const userActive = req.session.user._id;
-        await User.findByIdAndUpdate (userActive, {email, password, firstName, lastName, image});
+        let profileImg = "";
+        if (req.file === undefined) {
+            profileImg = userActive.img;
+        } else {
+            profileImg = req.file.path
+        }
+        await User.findByIdAndUpdate (userActive, {email, password, firstName, lastName, image: profileImg});
+        res.redirect('/user')
     } catch (error) {
         next(error);
     }
