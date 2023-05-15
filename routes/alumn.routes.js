@@ -4,6 +4,9 @@ const Alumn = require("../models/Alumn.model.js");
 const uploader = require('../middlewares/cloudinary.middleware.js');
 const User = require("../models/User.model.js");
 
+const {isLoggedIn} = require('../middlewares/middlewares');
+
+router.use(isLoggedIn);
 
 //GET /alumn/create =>create Alumns
 router.get("/create", async (req, res, next) => {
@@ -32,7 +35,7 @@ router.get("/:idAlumn/details", async(req, res, next) => {
     const alumnDetails = await Alumn.findById(req.params.idAlumn);
     const {tutorClass} = foundUser;
     let isTutor = false;
-    
+
     if ((`${tutorClass.name} ${tutorClass.subName}`) === alumnDetails.class){
       isTutor = true;
     } 

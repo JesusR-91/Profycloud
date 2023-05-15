@@ -2,6 +2,10 @@ const router = require("express").Router();
 const Class = require("../models/Class.model.js");
 const Alumn = require("../models/Alumn.model.js");
 const User = require("../models/User.model.js");
+const { isLoggedIn, isAdmin } = require("../middlewares/middlewares");
+
+
+router.use(isLoggedIn);
 
 //GET /class
 router.get("/", async (req, res, next) => {
@@ -22,7 +26,7 @@ router.get("/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClase);
     const alumnsInClass = await Alumn.find({class: req.params.idClase});
-    console.log(alumnsInClass)
+    const activeUser = await User.findById(req.session.user._id);
     res.render("classes/class.hbs", { oneClass, alumnsInClass });
   } catch (error) {
     next(error);

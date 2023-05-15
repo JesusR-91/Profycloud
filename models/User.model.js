@@ -17,7 +17,7 @@ const userSchema = new Schema(
     lastName: String,
     image: {
       type:String,
-      default: "public/images/favicon",
+      default: "/images/logo.png",
     },
     rol: {
       type: [String],

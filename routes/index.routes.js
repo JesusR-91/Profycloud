@@ -1,13 +1,17 @@
 const router = require('express').Router();
+const {isLoggedIn, updateLocals} = require('../middlewares/middlewares');
 
+router.use(updateLocals);
 
 /* GET home page */
+const authRouter = require('./auth.routes');
+router.use('/', authRouter);
+
+router.use(isLoggedIn);
+
 router.get("/", (req, res, next) => {
   res.render("index");
 });
-
-
-
 
 const adminRouter = require('./admin.routes');
 router.use('/admin', adminRouter);
@@ -21,7 +25,5 @@ router.use('/class', classesRouter);
 const userRouter = require('./user.routes');
 router.use('/user', userRouter);
 
-const authRouter = require('./auth.routes');
-router.use('/', authRouter);
 
 module.exports = router;
