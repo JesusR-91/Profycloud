@@ -10,6 +10,13 @@
 
         {{/each}}
     </div>
-
-    <div></div>
+    <br>
+<h2>Lista de Clases</h2>
+    <div>
+        {{#each allClasses}}
+        <li><a href="admin/class/{{_id}}">{{name}} {{subName}}</a></li>
+        <br>
+        {{/each}}
+ <button><a href="/admin/class/create/newClass"> Create a new Class</a></button>
+    </div>
 </div>
