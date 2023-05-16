@@ -83,7 +83,7 @@ router.post("/:idUser/delete", async (req, res, next) => {
 //GET  /admin/class/class
 router.get("/class/class", async (req, res, next) => {
   try {
-    const allClasses = await Class.findById();
+    const allClasses = await Class.find();
     res.render("admin/classes-index.hbs", { allClasses });
   } catch (error) {
     next(error);
