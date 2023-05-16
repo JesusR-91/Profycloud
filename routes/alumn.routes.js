@@ -9,25 +9,6 @@ const {isLoggedIn} = require('../middlewares/middlewares');
 
 router.use(isLoggedIn);
 
-//GET /alumn/create =>create Alumns
-router.get("/create", async (req, res, next) => {
-  try {
-    res.render("alumn/create.hbs");
-  } catch (error) {
-    next(error);
-  }
-});
-
-//POST /alumn/create
-router.post("/create", async (req, res, next) => {
-  try {
-    const { firstName, lastName, image } = req.body;
-    await Alumn.create({ firstName, lastName, image });
-    res.redirect("/create");
-  } catch (error) {
-    next(error);
-  }
-});
 
 //GET /alumn/:idAlumno/details
 router.get("/:idAlumn/details", async(req, res, next) => {
@@ -65,31 +46,41 @@ router.get("/:idAlumn/edit", async (req, res, next) => {
 //POST /alumn/:idAlumn/edit
 router.post("/:idAlumn/edit", uploader.single("image"), async (req, res, next) => {
   try {
-    const { firstName, lastName, classroom, contactEmail, contactPerson, contactPhone} = req.body;
+    const { firstName, lastName, classroom, contactEmail, contactPerson, contactPhone, name, subName} = req.body;
     let profileImg = "";
     if (req.file === undefined) {
         profileImg = undefined;
     } else {
         profileImg = req.file.path
     }
-    await Alumn.findByIdAndUpdate(req.params.idAlumn, {firstName, lastName, image: profileImg, classroom, contactEmail, contactPerson, contactPhone});
+
+    const editAlumn = await Alumn.findById(req.params.idAlumn);
+    let alumnClass = await Class.findOne({$and:[{name: editAlumn.classroom[0]}, {subName: editAlumn.classroom[2]}]});
+    const newClass = await Class.findOne({$and:[{name: name}, {subName: subName}]});
+
+    if(newClass !== alumnClass) {
+      await Class.findByIdAndUpdate(alumnClass._id, {$pull: {alumns: editAlumn._id}});
+      await Class.findByIdAndUpdate(newClass._id, {$push: {alumns: editAlumn._id}});
+    } 
+
+    await Alumn.findByIdAndUpdate(req.params.idAlumn, {firstName, lastName, image: profileImg, classroom: `${name} ${subName}`, contactEmail, contactPerson, contactPhone});
     res.redirect(`/alumn/${req.params.idAlumn}/details`);
   } catch (error) {
     next(error);
   }
 });
 
-//GET '/create'
+//GET '/alumn/create'
 
-router.get('/create', async (res, req, next) =>{
+router.get('/create', async (req, res, next) =>{
   try {
-    res.render('/alumn/create');
+    res.render('alumn/create');
   } catch (error) { next(error)}
 })
 
-//POST '/create'
+//POST '/alumn/create'
 
-router.post('/create',uploader.single("image"), async (res, req, next) =>{
+router.post('/create',uploader.single("image"), async (req, res, next) =>{
   try {
     const {firstName, lastName, classroom, contactEmail, contactPerson, contactPhone} = req.body;
 
@@ -99,8 +90,9 @@ router.post('/create',uploader.single("image"), async (res, req, next) =>{
     } else {
         profileImg = req.file.path;
     }
-    
-    await Alumn.create({firstName, lastName, classroom, contactEmail, contactPerson, contactPhone, image: profileImg});
+    const alumnClass = await Class.findOne({$and:[{name: classroom[0]}, {subName:classroom[2]}]})
+    const newAlumn = await Alumn.create({firstName, lastName, classroom, contactEmail, contactPerson, contactPhone, image: profileImg});
+    await Class.findByIdAndUpdate(alumnClass._id, {$push: {alumns: newAlumn._id}});
     res.redirect('/class');
   } catch (error) {next(error)}
 })

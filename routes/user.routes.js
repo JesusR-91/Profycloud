@@ -6,6 +6,7 @@ const Class = require ('../models/Class.model');
 const uploader = require('../middlewares/cloudinary.middleware.js');
 
 
+
 //GET  '/' => render the view
 
 router.get ('/', async (req, res, next) =>{
