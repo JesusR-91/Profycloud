@@ -118,17 +118,26 @@ router.post("/:idAlumn/delete", async (req, res, next) => {
 
 //GET "/alumn/:idAlumn/newcomment"
 
+
 // router.get('/:idAlumn/newcomment', async (req, res, next) =>{
 //   try {
 //     res.render('/alumn/newcomment')
 //   } catch (error) { next(error)}
 // })
 
+/* router.get('/:idAlumn/newcomment', async (req, res, next) =>{
+  try {
+    res.render('/alumn/newcomment')
+  } catch (error) { next(error)}
+})
+
 // //POST "/alumn/:idAlumn/newcomment"
 
 // router.post('/:idAlumn/newcomment', async (req, res, next) =>{
   
 // })
+})
+ */
 
 
 module.exports = router;

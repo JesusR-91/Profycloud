@@ -1,1 +1,24 @@
-<h2>Clase</h2>
+<div>
+  <h2>Welcome to {{oneClass.name}} {{oneClass.subName}}:</h2>
+  <div>
+      <span>Alumnos:</span>
+    <ul>
+      {{#each oneClass.alumns}}
+        <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
+      {{/each}}
+    </ul>
+    <span>Profesores:</span>
+    <ul>
+      {{#each professors}}
+        <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+      {{/each}}
+    </ul>
+
+    <br>
+
+    <button><a href="/admin/class/{{oneClass._id}}/edit"> Edit Class</a></button>
+  </div>
+
+  
+
+</div>

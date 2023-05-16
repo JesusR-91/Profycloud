@@ -1,1 +1,10 @@
-<h3>Todas las clases</h3>
+<div>
+<h3>Todas las clases:</h3>
+
+
+{{#each allClasses}}
+<ul>
+    <li><a href="/admin/class/{{_id}}/edit">{{name}} {{subName}}</a> </li>
+</ul>
+{{/each}}
+</div>
