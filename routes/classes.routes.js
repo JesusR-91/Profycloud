@@ -22,17 +22,11 @@ router.get("/", async (req, res, next) => {
 //GET /class/:idClase
 router.get("/:idClass", async (req, res, next) => {
   try {
-  /*   const oneClass = await Class.findById(req.params.idClass).populate("alumns");
-    const activeUser = await User.find().populate("class")
-    let length = activeUser.length
-    let classId = []
-    for (let i = 0; i<length;i++){
-      if (activeUser[i].class.includes(oneClass)){
-        classId.push(activeUser[i])
-      }
-    }
-    console.log(activeUser) */
-    res.render("classes/class.hbs", { oneClass, classId });
+    const oneClass = await Class.findById(req.params.idClass).populate('alumns');
+    const professors = await User.find({class: [oneClass._id]});
+  
+    console.log(professors)
+    res.render("classes/class.hbs", { oneClass, professors });
   } catch (error) {
     next(error);
   }
