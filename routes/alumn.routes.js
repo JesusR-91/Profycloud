@@ -55,9 +55,6 @@ router.get("/:idAlumn/edit", async (req, res, next) => {
   try {
     const editAlumn = await Alumn.findById(req.params.idAlumn);
     const foundUser = await User.findById(req.session.user._id).populate('tutorClass');
-    const {tutorClass} = foundUser;
-    let isTutor = false;
-    const {_id, firstName,lastName, image, classroom, contactEmail, contactPerson, contactPhone } = editAlumn;
     res.render("alumn/edit.hbs", editAlumn);
   } catch (error) {
     next(error);
@@ -108,6 +105,7 @@ router.post('/create',uploader.single("image"), async (res, req, next) =>{
 })
 
 //POST "/alumn/:idAlumn/delete"
+
 router.post("/:idAlumn/delete", async (req, res, next) => {
   try {
     await Alumn.findByIdAndDelete(req.params.idAlumn);
@@ -116,5 +114,20 @@ router.post("/:idAlumn/delete", async (req, res, next) => {
     next(error);
   }
 });
+
+//GET "/alumn/:idAlumn/newcomment"
+
+router.get('/:idAlumn/newcomment', async (req, res, next) =>{
+  try {
+    res.render('/alumn/newcomment')
+  } catch (error) { next(error)}
+})
+
+//POST "/alumn/:idAlumn/newcomment"
+
+router.post('/:idAlumn/newcomment', async (req, res, next) =>{
+  
+})
+
 
 module.exports = router;

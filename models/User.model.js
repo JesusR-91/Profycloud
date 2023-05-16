@@ -37,8 +37,7 @@ const userSchema = new Schema(
       ref: 'Class',
     }],
   },
-  {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
+  { 
     timestamps: true
   }
 );
