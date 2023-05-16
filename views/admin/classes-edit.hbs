@@ -16,21 +16,29 @@
         <input type="text" name="subName" value="{{editClass.subName}}" />
       </div>
       <br />
+        <div>
+            <label for="professors">Professors: </label>
+            <select name="professors" multiple="true">
+            {{#each allProfessors}}
+                <option value="{{this._id}}">{{this.firstName}} {{this.lastName}}</option>
+            {{/each}}
+            </select>
+        </div>
+        <br>
       <button class="btn btn-secondary">Commit</button>
     </form>
-
+    <br>
+    <br>
     <div>
       <h8>Alumnos:</h8>
 
       <button><a href="/alumn/create"> Add a new alumn</a></button>
     </div>
     <br />
-    <div>
-      <h8>Professors:</h8>
 
-      <button><a href="/admin"> Add a new professor</a></button>
-    </div>
-
+    <form action="/admin/class/{{editClass._id}}/delete" method="post">
+        <button>Delete</button>
+    </form>
     <br />
   </div>
 

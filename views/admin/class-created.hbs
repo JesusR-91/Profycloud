@@ -16,7 +16,17 @@
         <input type="text" name="subName"/>
       </div>
       <br />
-      <button class="btn btn-secondary">Commit</button>
+      <div>
+        <label for="professors">Professors: </label>
+        <select name="professors" multiple="true">
+          {{#each allProfessors}}
+            <option value="{{_id}}">{{firstName}} {{lastName}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <br />
+      <button class="btn btn-secondary">Create</button>
     </form>
 
 </div>

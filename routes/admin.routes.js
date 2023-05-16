@@ -107,10 +107,9 @@ router.get("/class/class", async (req, res, next) => {
 //GET /admin/class/:idClass/edit
 router.get("/class/:idClass/edit", async (req, res, next) => {
   try {
-    const editClass = await Class.findById(req.params.idClass).populate(
-      "alumns"
-    );
-    res.render("admin/classes-edit.hbs", {editClass});
+    const editClass = await Class.findById(req.params.idClass).populate("alumns");
+    const allProfessors = await User.find();
+    res.render("admin/classes-edit.hbs", {editClass, allProfessors});
   } catch (error) {
     next(error);
   }
@@ -119,8 +118,20 @@ router.get("/class/:idClass/edit", async (req, res, next) => {
 //POST /admin/class/:idClass/edit
 router.post("/class/:idClass/edit", async (req, res, next) => {
   try {
-    const { name, subName} = req.body;
-    await Class.findByIdAndUpdate(req.params.idClass, {name, subName});
+    const { name, subName, professors} = req.body;
+    let profArray = [professors]
+    const editClass = await Class.findByIdAndUpdate(req.params.idClass, {name, subName});
+    let allProfessors = await User.find();
+    for (let i = 0; i < allProfessors.length; i++){
+      for(let j = 0; j < allProfessors.length; j++){
+        if(allProfessors[i]._id === profArray[j]){
+          await User.findByIdAndUpdate(profArray[i], {$push: {class: editClass._id}});
+          break;
+        } else if ((allProfessors[i].class.includes(editClass._id) === true) && (allProfessors[i]._id !== profArray[j])){
+          await User.findByIdAndUpdate(allProfessors[i]._id, {$pull: {class: editClass._id}} )
+        }
+      }
+    }
     res.redirect("/admin/class/class");
   } catch (error) {
     next(error);
@@ -130,7 +141,9 @@ router.post("/class/:idClass/edit", async (req, res, next) => {
 // GET /admin/class/create/newClass
 router.get("/class/create/newClass", async (req, res, next) => {
   try {
-    res.render("admin/class-created.hbs");
+    const allProfessors = await User.find();
+    console.log(allProfessors)
+    res.render("admin/class-created.hbs", {allProfessors});
   } catch (error) {
     next(error);
   }
@@ -139,9 +152,12 @@ router.get("/class/create/newClass", async (req, res, next) => {
 // POST /admin/class/create/newClass
 router.post("/class/create/newClass", async (req, res, next) => {
   try {
-    const { name, subName } = req.body;
-    console.log(name, subName)
-   await Class.create({ name, subName });
+    const { name, subName, professors } = req.body;
+    console.log(name, subName, professors)
+    const newClass = await Class.create({ name, subName });
+    for (let i = 0; i < professors.length; i++){
+      await User.findByIdAndUpdate(professors[i], {$push: {class: newClass._id}});
+    }
     res.redirect("/admin/class/class"); 
   } catch (error) {
     next(error);
