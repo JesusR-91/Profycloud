@@ -91,7 +91,7 @@ router.get("/class/class", async (req, res, next) => {
 });
 
 //GET /admin/class/:idClass
-router.get("/class/:idClass", async (req, res, next) => {
+ router.get("/class/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClass).populate(
       "alumns"
@@ -101,7 +101,7 @@ router.get("/class/:idClass", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+}); 
 
 //GET /admin/class/:idClass/edit
 router.get("/class/:idClass/edit", async (req, res, next) => {
@@ -116,11 +116,32 @@ router.get("/class/:idClass/edit", async (req, res, next) => {
 });
 
 //POST /admin/class/:idClass/edit
-router.post("/class/:idUser/edit", async (req, res, next) => {
+router.post("/class/:idClass/edit", async (req, res, next) => {
   try {
     const { name, subName} = req.body;
-    await Class.findByIdAndUpdate(req.params.isClass, {name, subName});
-    res.redirect("/admin/class");
+    await Class.findByIdAndUpdate(req.params.idClass, {name, subName});
+    res.redirect("/admin/class/class");
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET /admin/class/create/newClass
+router.get("/class/create/newClass", async (req, res, next) => {
+  try {
+    res.render("admin/class-created.hbs");
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST /admin/class/create/newClass
+router.post("/class/create/newClass", async (req, res, next) => {
+  try {
+    const { name, subName } = req.body;
+    console.log(name, subName)
+   await Class.create({ name, subName });
+    res.redirect("/admin/class/class"); 
   } catch (error) {
     next(error);
   }

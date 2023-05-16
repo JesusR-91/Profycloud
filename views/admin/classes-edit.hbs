@@ -1,40 +1,37 @@
 <div>
-    <h2>Edit {{editClass.name}} {{editClass.subName}}:</h2>
+  <h2>Edit {{editClass.name}} {{editClass.subName}}:</h2>
+  <div>
+    <form
+      action="/admin/class/{{editClass._id}}/edit"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div>
+        <label for="name">Grade: </label>
+        <input type="text" name="name" value="{{editClass.name}}" />
+      </div>
+      <br />
+      <div>
+        <label for="subName">Letter: </label>
+        <input type="text" name="subName" value="{{editClass.subName}}" />
+      </div>
+      <br />
+      <button class="btn btn-secondary">Commit</button>
+    </form>
+
     <div>
-        <form action="">
-            <div>
-                <label for="name">Grade: </label>
-                <input type="text" name="name" value="{{editClass.name}}">
-            </div>
-            <br>
-            <div>
-                <label for="subName">Letter: </label>
-                <input type="text" name="subName" value="{{editClass.subName}}">
-            </div>
-            <br>
-        </form>
+      <h8>Alumnos:</h8>
 
-        <div>
-            <h8>Alumnos:</h8>
-            <ul>
-                {{#each editClass.alumns}}
-                    <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
-                {{/each}}
-            </ul>
-            <button><a href="/alumn/create"> Add a new alumn</a></button>
-        </div>
-        <br>
-        <div>
-            <h8>Professors:</h8>
-            <ul>
-            {{#each professorsClass}}
-                <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
-            {{/each}}
-            </ul>
-            <button><a href="/admin"> Add a new professor</a></button>
-        </div>
-
-        <br>
+      <button><a href="/alumn/create"> Add a new alumn</a></button>
     </div>
+    <br />
+    <div>
+      <h8>Professors:</h8>
+
+      <button><a href="/admin"> Add a new professor</a></button>
+    </div>
+
+    <br />
+  </div>
 
 </div>
