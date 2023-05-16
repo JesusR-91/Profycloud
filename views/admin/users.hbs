@@ -8,24 +8,29 @@
 
   <div>
     <div>
-      <h2>{{oneUser.firstName}} {{oneUser.lastName}}</h2>
+      <h2>Name: {{oneUser.firstName}} {{oneUser.lastName}}</h2>
     </div>
 
     <br />
 
     <div>
+      <p>Tutor of class: {{oneUser.tutorClass.name}} {{oneUser.tutorClass.subName}}</p>
+    </div>
+    <br>
+
+    <div>
       <p>Email: {{oneUser.email}}</p>
+    </div>
 
-      <br />
+    <br />
 
-      <div>
-        <h5>Your classes:</h5>
-        <ul>
-          {{#each class}}
-            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
+    <div>
+      <h5>Classes:</h5>
+      <ul>
+        {{#each this.userClasses.class}}
+          <li><a href="/class/{{this._id}}">{{this.name}} {{this.subName}}</a></li>
+        {{/each}}
+      </ul>
     </div>
 
     <br />

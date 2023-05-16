@@ -20,8 +20,9 @@ router.get("/", async (req, res, next) => {
 //GET /admin/:idUser
 router.get("/:idUser", async (req, res, next) => {
   try {
-    const oneUser = await User.findById(req.params.idUser);
-    res.render("admin/users", { oneUser });
+    const oneUser = await User.findById(req.params.idUser).populate('tutorClass');
+    const userClasses = await User.findById(req.params.idUser).populate('class').select({class: 1});
+    res.render("admin/users", { oneUser, userClasses });
   } catch (error) {
     next(error);
   }

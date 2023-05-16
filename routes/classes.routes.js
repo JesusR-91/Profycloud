@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClass).populate('alumns');
-    const professors = await User.find({class: [oneClass._id]});
+    const professors = await User.find({class: oneClass._id});
   
     console.log(professors)
     res.render("classes/class.hbs", { oneClass, professors });
