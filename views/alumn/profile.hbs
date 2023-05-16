@@ -25,6 +25,17 @@
     {{#if this.isTutor}}
         <button><a href="/alumn/{{./_id}}/edit">Edit</a></button>
     {{/if}}
+    <br>
+    <div>
+        <h5>Comments: </h5>
+        {{!-- {{#each}}
+            <div>
+                <h8>Made by: {{madeBy}}</h8>
+                <p>Time: {{createdAt}} </p>
+                <p>{{comment}}</p>
+            </div>
+        {{/each}} --}}
 
-
+        <button> <a href="/alumn/{{./_id}}/newcomment">Add a new comment</a></button>
+    </div>
 </div>

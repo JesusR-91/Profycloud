@@ -25,4 +25,13 @@ const updateLocals = (req, res, next) =>{
   next();
 }
 
-module.exports = {isLoggedIn, updateLocals, isAdmin}
+const adminLocals = (req, res, next) =>{
+  if((req.session.user !== undefined) && (req.session.user.admin === true)){
+    res.locals.isAdmin = true;
+  } else {
+    res.locals.isAdmin = false;
+  }
+  next();
+}
+
+module.exports = {isLoggedIn, updateLocals, isAdmin, adminLocals}

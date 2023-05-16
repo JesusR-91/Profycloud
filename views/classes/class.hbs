@@ -9,10 +9,16 @@
     </ul>
     <span>Profesores:</span>
     <ul>
-      {{#each professors}}
+      {{#each professorsClass}}
         <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
       {{/each}}
     </ul>
+
+    <br>
+
+    <button><a href="/alumn/create"> Add a new alumn</a></button>
   </div>
+
+  
 
 </div>
