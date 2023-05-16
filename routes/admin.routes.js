@@ -11,7 +11,8 @@ router.use(isAdmin);
 router.get("/", async (req, res, next) => {
   try {
     const allUsers = await User.find();
-    res.render("admin/index", { allUsers });
+    const allClasses = await Class.find()
+    res.render("admin/index", { allUsers, allClasses });
   } catch (error) {
     next(error);
   }
