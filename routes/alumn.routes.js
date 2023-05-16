@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Alumn = require("../models/Alumn.model.js");
+const Class = require('../models/Class.model.js')
 
 const uploader = require('../middlewares/cloudinary.middleware.js');
 const User = require("../models/User.model.js");
@@ -54,8 +55,8 @@ router.get("/:idAlumn/details", async(req, res, next) => {
 router.get("/:idAlumn/edit", async (req, res, next) => {
   try {
     const editAlumn = await Alumn.findById(req.params.idAlumn);
-    const foundUser = await User.findById(req.session.user._id).populate('tutorClass');
-    res.render("alumn/edit.hbs", editAlumn);
+    const alumnClass = await Class.findOne({$and:[{name: editAlumn.classroom[0]}, {subName: editAlumn.classroom[2]}]});
+    res.render("alumn/edit.hbs", {editAlumn, alumnClass});
   } catch (error) {
     next(error);
   }
@@ -117,17 +118,17 @@ router.post("/:idAlumn/delete", async (req, res, next) => {
 
 //GET "/alumn/:idAlumn/newcomment"
 
-router.get('/:idAlumn/newcomment', async (req, res, next) =>{
-  try {
-    res.render('/alumn/newcomment')
-  } catch (error) { next(error)}
-})
+// router.get('/:idAlumn/newcomment', async (req, res, next) =>{
+//   try {
+//     res.render('/alumn/newcomment')
+//   } catch (error) { next(error)}
+// })
 
-//POST "/alumn/:idAlumn/newcomment"
+// //POST "/alumn/:idAlumn/newcomment"
 
-router.post('/:idAlumn/newcomment', async (req, res, next) =>{
+// router.post('/:idAlumn/newcomment', async (req, res, next) =>{
   
-})
+// })
 
 
 module.exports = router;

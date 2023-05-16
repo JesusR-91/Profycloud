@@ -1,1 +1,40 @@
-<h2>Editar clase</h2>
+<div>
+    <h2>Edit {{editClass.name}} {{editClass.subName}}:</h2>
+    <div>
+        <form action="">
+            <div>
+                <label for="name">Grade: </label>
+                <input type="text" name="name" value="{{editClass.name}}">
+            </div>
+            <br>
+            <div>
+                <label for="subName">Letter: </label>
+                <input type="text" name="subName" value="{{editClass.subName}}">
+            </div>
+            <br>
+        </form>
+
+        <div>
+            <h8>Alumnos:</h8>
+            <ul>
+                {{#each editClass.alumns}}
+                    <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
+                {{/each}}
+            </ul>
+            <button><a href="/alumn/create"> Add a new alumn</a></button>
+        </div>
+        <br>
+        <div>
+            <h8>Professors:</h8>
+            <ul>
+            {{#each professorsClass}}
+                <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+            {{/each}}
+            </ul>
+            <button><a href="/admin"> Add a new professor</a></button>
+        </div>
+
+        <br>
+    </div>
+
+</div>

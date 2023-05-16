@@ -118,13 +118,8 @@ router.get("/class/:idClass/edit", async (req, res, next) => {
 //POST /admin/class/:idClass/edit
 router.post("/class/:idUser/edit", async (req, res, next) => {
   try {
-    const { name, subname, Subject, alumns } = req.body;
-    await Class.findByIdAndUpdate(req.params.isClass, {
-      name,
-      subname,
-      Subject,
-      alumns,
-    });
+    const { name, subName} = req.body;
+    await Class.findByIdAndUpdate(req.params.isClass, {name, subName});
     res.redirect("/admin/class");
   } catch (error) {
     next(error);
