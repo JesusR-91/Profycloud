@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const {isLoggedIn, updateLocals} = require('../middlewares/middlewares');
+const {isLoggedIn, updateLocals, adminLocals} = require('../middlewares/middlewares');
 
-router.use(updateLocals);
+router.use(updateLocals, adminLocals);
 
 /* GET home page */
 const authRouter = require('./auth.routes');
