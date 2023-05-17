@@ -68,10 +68,6 @@ router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const foundUser = await User.findOne({ email: email });
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      foundUser.password
-    );
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/login", {
@@ -87,6 +83,10 @@ router.post("/login", async (req, res, next) => {
       return;
     }
     //!Encriptación contraseña
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      foundUser.password
+    );
     if (isPasswordCorrect === false) {
       res.render("auth/login", {
         errorMessage: "Contraseña no valida",
