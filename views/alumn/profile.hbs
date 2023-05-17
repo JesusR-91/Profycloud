@@ -1,30 +1,33 @@
 <div>
-    <div>
-        <h2>{{firstName}} {{ lastName}} profile: </h2>
+    <div class=" align-items-center text-center perfilAlumno card col-sm-6 col-md-6">
+ 
         <br>
         <div>
-            <img src= {{image}} alt="profile-photo" width="200px">
+            <img src= {{image}} alt="profile-photo" width="200px" class="card-img-top">
         </div>
 
         <br>
 
-        <div>
-            <div>
-                <p>Class: {{classroom}}</p>
-                <p>Contact person: {{contactPerson}}</p>
+        <div class="card-body">
+            <h3>{{firstName}} {{lastName}}</h3>
+            <ul>
+                <li>Class: {{classroom}}</li>
                 <br>
-                <p>Contact email: {{contactEmail}}</p>
+                <li>Contact person: {{contactPerson}}</li>
                 <br>
-                <p>Contact phone: {{contactEmail}}</p>
+                <li>Contact email: {{contactEmail}}</li>
                 <br>
-            </div>
+                <li>Contact phone: {{contactEmail}}</li>
+                <br>
+            </ul>
        
             <br>
+    {{#if this.isTutor}}
+        <button class="btn btn-secondary "><a href="/alumn/{{./_id}}/edit" >Edit</a></button>
+    {{/if}}
         </div>
 
-    {{#if this.isTutor}}
-        <button><a href="/alumn/{{./_id}}/edit">Edit</a></button>
-    {{/if}}
+    </div>
     <br>
     <div>
         <h5>Comments: </h5>
@@ -36,6 +39,6 @@
             </div>
         {{/each}}
 
-        <button> <a href="/alumn/{{./_id}}/newcomment">Add a new comment</a></button>
+        <button class="btn btn-secondary "> <a href="/alumn/{{./_id}}/newcomment" >Add a new comment</a></button>
     </div>
 </div>

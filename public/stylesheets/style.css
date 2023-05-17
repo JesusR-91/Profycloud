@@ -3,12 +3,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 
   background-color: #f1ead7;
-
 }
 
 a {
   color: #00b7ff;
-
 }
 
 h1 {
@@ -17,6 +15,8 @@ h1 {
 
 .web {
   background-color: #f1ead7;
+  margin-left: 22%;
+  margin-right: -30%;
 }
 
 .form {
@@ -33,4 +33,47 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
+}
+
+.perfilUsuario {
+  flex-direction: row;
+}
+.perfilUsuario ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 19px;
+  margin: 0 42% 5% 42%;
+  gap: 10px;
+}
+
+.perfilUsuario img {
+  width: 80%;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: calc(0.25rem - 1px);
+  margin-left: 35%;
+}
+
+.perfilAlumno {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.perfilAlumno ul {
+  list-style-type: none;
+  margin-left: -30px;
+}
+
+.perfilAlumno img {
+  width: 80%;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: calc(0.25rem - 1px);
+  margin-left: 35%;
+}
+
+.classIndex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }

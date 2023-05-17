@@ -1,14 +1,11 @@
-<div >
-  <h2>{{firstName}}'s profile: </h2>
+<div class="text-center perfilUsuario card col-sm-6 col-md-6">
   <br />
   <div>
-  <img src={{image}} alt="profile-photo" width="200px" />
+  <img src={{image}} alt="profile-photo" width="200px" class="card-img-top" />
   </div>
-  <div>
-    <div>
-      <h2>{{firstName}} {{lastName}}</h2>
-    </div>
+  <div class="card-body">
     <br />
+      <h2>{{firstName}} {{lastName}}</h2>
     <div>
       <p>Email: {{email}}</p>
       <br />
@@ -16,12 +13,12 @@
         <h5>Your classes:</h5>
         <ul>
           {{#each class}}
-            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
+         <li><a href="/class/{{this._id}}"> {{name}} {{subName}}</a></li>
+
           {{/each}}
         </ul>
       </div>
     </div>
-    <br />
+  <a href="/user/edit" class="btn btn-secondary ">Edit</a>
   </div>
-  <a href="/user/edit" class="btn btn-secondary">Edit</a>
 </div>
