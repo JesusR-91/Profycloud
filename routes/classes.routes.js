@@ -24,7 +24,14 @@ router.get("/:idClass", async (req, res, next) => {
   try {
     const oneClass = await Class.findById(req.params.idClass).populate('alumns');
     const professorsClass = await User.find({class: {$in: [oneClass._id]}});
-    res.render("classes/class.hbs", { oneClass, professorsClass });
+    let isTutor = "";
+    if (req.session.user.tutorClass === oneClass._id.toString()){
+      isTutor = true;
+    } else {
+      isTutor = false;
+    }
+    console.log(req.session.user.tutorClass, oneClass._id)
+    res.render("classes/class.hbs", { oneClass, professorsClass,isTutor });
   } catch (error) {
     next(error);
   }
