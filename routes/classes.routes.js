@@ -30,7 +30,6 @@ router.get("/:idClass", async (req, res, next) => {
     } else {
       isTutor = false;
     }
-    console.log(req.session.user.tutorClass, oneClass._id)
     res.render("classes/class.hbs", { oneClass, professorsClass,isTutor });
   } catch (error) {
     next(error);

@@ -21,8 +21,10 @@ router.get("/:idAlumn/details", async(req, res, next) => {
     //tutor finding
     const {tutorClass} = foundUser;
     let isTutor = false;
-    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === classroom))
+    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === classroom)){
       isTutor = true;
+    }
+
     
     const alumnComments = await Comment.find({madeTo: req.params.idAlumn}).populate('madeBy');
     console.log(alumnComments)
