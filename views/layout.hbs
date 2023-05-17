@@ -15,8 +15,8 @@
   </head>
 
   <body class = "web">
-    <ul class="nav nav-tabs shadow-lg p-3 mb-5 bg-white rounded">
       {{#if isUserActive}}
+    <ul class="nav shadow-lg p-3 mb-5 bg-white rounded">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
@@ -27,8 +27,11 @@
             <a class="nav-link" href="/class">Class</a>
           </li>
           {{#if isAdmin}}
-              <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Admin</a>
+              <li class="nav-item dropdown-menu">
+                
+                <a class="nav-link" href="/admin">Index</a>
+                <a class="nav-link" href="/admin/class/create/newClass">New Class</a>
               </li>
           {{/if}}
           <li class="nav-item">
