@@ -1,7 +1,7 @@
 <div>
     <div>
         <h2>Edit {{editUser.firstName}} {{editUser.lastName}} profile: </h2>
-        <form action="/admin/{{_id}}/edit" method="post" enctype='multipart/form-data'>
+        <form action="/admin/{{editUser._id}}/edit" method="post" enctype='multipart/form-data'>
             <div>
                 <label for="image" class="form-label">Profile photo: </label>
                 <input type="file" name="image" class="form-control">
@@ -35,9 +35,16 @@
                         {{/each}}
                    </select>
                 </div>
+                <br>
+                <div>
+                    <label for="classes">Classes: </label>
+                    <select name="classes" multiple="true">
+                        {{#each allClasses}}
+                            <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
+                        {{/each}}
+                    </select>
                 </div>
                 <br>
-
                 <div>
                     <button class="btn btn-secondary"><a href="/admin"></a>Commit</button>
                 </div>
@@ -45,7 +52,7 @@
         </form>
 
         <form action="/admin/{{_id}}/delete" method="post">
-            <button>Delete</button>
+            <button class="btn btn-secondary">Delete</button>
         </form>
 
 </div>

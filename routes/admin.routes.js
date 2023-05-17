@@ -45,12 +45,11 @@ router.get("/:idUser/edit", async (req, res, next) => {
 });
 
 //POST /admin/:idUser/edit
-router.post(
-  "/:idUser/edit",
-  uploader.single("image"),
-  async (req, res, next) => {
+router.post("/:idUser/edit", uploader.single("image"), async (req, res, next) => {
     try {
-      const { email, password, firstName, lastName } = req.body;
+      const { email, password, firstName, lastName, tutorClass, classes } = req.body;
+
+      //cloudinary settings
       let profileImg = "";
       if (req.file === undefined) {
         profileImg = undefined;
@@ -58,13 +57,30 @@ router.post(
         profileImg = req.file.path;
       }
 
-      await User.findByIdAndUpdate(req.params.idUser, {
-        email,
-        password,
-        firstName,
-        lastName,
-        image: profileImg,
-      });
+      const user = await User.findByIdAndUpdate(req.params.idUser, {email, password, firstName, lastName, image: profileImg, tutorClass, classes});
+      
+      //update de classes
+      let classArray = [];
+      if(typeof classes !== "object") {
+        classArray.push(classes)
+      } else {
+        classes.forEach(clas => classArray.push(clas));
+      }
+
+      // pull the non-selected classes
+      for (let i = 0; i < user.class.length; i++){
+        if (classArray.includes(user.class[i]) === false){
+          await User.findByIdAndUpdate(user._id, {$pull: {class: user.class[i]}});
+        }  
+      }
+
+      // push the selected classes
+      for(let j = 0; j < classArray.length; j++){
+        if (user.class.includes (classArray[j]) === false){
+          await User.findByIdAndUpdate(user._id, {$push: {class: classArray[j]}});
+        }
+      }
+      
       res.redirect("/admin");
     } catch (error) {
       next(error);
@@ -111,6 +127,8 @@ router.get("/class/:idClass/edit", async (req, res, next) => {
 router.post("/class/:idClass/edit", async (req, res, next) => {
   try {
     const { name, subName, professors} = req.body;
+
+    //update de classes for the professors
     let profArray = [];
     if(typeof professors !== "object") {
       profArray.push(professors)
@@ -164,7 +182,7 @@ router.post("/class/create/newClass", async (req, res, next) => {
 router.post("/class/:idClass/delete", async(req, res, next)=>{
   try {
     await Class.findByIdAndDelete(req.params.idUser)
-    res.redirect("/admin/class")
+    res.redirect("/admin")
   } catch (error) {
     next(error)
   }
