@@ -1,0 +1,12 @@
+<div>
+    <h5>Alumns list:</h5>
+
+    <div>
+        <ul>
+            {{#each this.alumns}}
+                <li><a href="/alumn/{{this._id}}/details">{{this.firstName}} {{this.lastName}}</a></li>
+                <br>
+            {{/each}}
+        </ul>
+    </div>
+</div>

@@ -181,7 +181,7 @@ router.post("/class/create/newClass", async (req, res, next) => {
 //POST /admin/class/:idClass/delete
 router.post("/class/:idClass/delete", async(req, res, next)=>{
   try {
-    await Class.findByIdAndDelete(req.params.idUser)
+    await Class.findByIdAndDelete(req.params.idClass)
     res.redirect("/admin")
   } catch (error) {
     next(error)

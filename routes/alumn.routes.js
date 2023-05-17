@@ -130,16 +130,20 @@ router.post('/:idAlumn/newcomment', async (req, res, next) =>{
     const {comment} = req.body;
     const newComment = await Comment.create({comment, madeBy: req.session.user._id, madeTo: req.params.idAlumn  });
 
-    res.redirect(`/alumn/${req.params.idAlumn}/details`)
+    res.redirect(`/alumn/${req.params.idAlumn}/details`);
 
   } catch (error) { next(error)}
 })
 
 //GET '/alumn/find-list/:alumn'
 
-
-
-//POST '/alumn/find-list/:alumn'
+router.get('/find-list/:alumn', async (req, res, next) =>{
+  try {
+    const alumns = await Alumn.find({firstName: req.params.alumn});
+    console.log(alumns)
+    res.render('alumn/find-list.hbs', {alumns});
+  } catch (error) {next(error)}
+})
 
 
 

@@ -26,7 +26,7 @@ router.post('/find', async (req, res, next)=>{
   const {find} = req.body;
   let regexLet = /^(?=.*[a-zA-Z])$/gm;
 
-  if ((find !== undefined) && (find.length <= 2)) {
+  if ((find !== undefined) && (find.length <= 2 && find.length > 0)) {
     const foundClass = await Class.findOne({$and: [{name: find[0]}, {subName: find[1]}]});
     res.redirect(`/class/${foundClass._id}`)
   } else if ((find !== undefined) && (find.length === 3)){
@@ -34,15 +34,16 @@ router.post('/find', async (req, res, next)=>{
     res.redirect(`/class/${foundClass._id}`)
   } else if ((find !== undefined) && (find.length > 3)) {
     let alumn = find.split(' ');
+    console.log(alumn)
     if(alumn.length === 1) {
-      res.redirect(`/alumn/find-list/${find[0]}`);
+      res.redirect(`/alumn/find-list/${alumn[0]}`);
     } else {
-      res.redirect(`/alumn/${foundAlumn._id}/details`);
       const foundAlumn = await Alumn.findOne({$and: [{firstName: alumn[0]}, {lastName: alumn[1]}]});
+      res.redirect(`/alumn/${foundAlumn._id}/details`);
     }
   } else {
-    res.render('/', {
-      errorMessage: 'Try to be more specific, if your are looking for a class, you should put something like "1 A", if you are looking for an alumn, '
+    res.render('index.hbs', {
+      errorMessage: 'Try to be more specific.'
     })
   }
 

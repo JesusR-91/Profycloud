@@ -3,6 +3,14 @@
         <form action="/find" method="post">
             <input type="text" name="find" placeholder="Look for a specific alumn or class">
             <button>Find it</button>
+
+            
+            <br>
+
+
+            {{#if this.errorMessage}}
+                <p style="color: red;">{{errorMessage}}</p>
+            {{/if}}
         </form>
     </div>
     <h2>Home</h2>
