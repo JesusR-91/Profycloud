@@ -1,17 +1,26 @@
 <div>
     <div>
-        <form action="/find" method="post">
+        <form action="/" method="post">
             <input type="text" name="find" placeholder="Look for a specific alumn or class">
             <button>Find it</button>
-
-            
             <br>
-
-
+        </form>
             {{#if this.errorMessage}}
                 <p style="color: red;">{{errorMessage}}</p>
             {{/if}}
-        </form>
     </div>
     <h2>Home</h2>
+
+    <br>
+
+    <div>
+        <h4>All the comments your alumns received: </h4>
+        {{#each allComments}}
+            <div>
+                <h6>Made by: {{this.madeBy.firstName}} {{this.madeBy.lastName}}</h6>
+                <p>Made to: {{this.madeTo.firstName}} {{this.madeTo.lastName}}</p>
+                <p>Comment: {{this.comment}}</p>
+            </div>
+        {{/each}}
+    </div>
 </div>
