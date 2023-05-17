@@ -27,7 +27,7 @@ router.get("/:idAlumn/details", async(req, res, next) => {
 
     
     const alumnComments = await Comment.find({madeTo: req.params.idAlumn}).populate('madeBy');
-    console.log(alumnComments)
+   
        
     res.render("alumn/profile.hbs", {_id, firstName, lastName, image, classroom, contactEmail, contactPerson, contactPhone, isTutor, alumnComments});
 
@@ -128,14 +128,18 @@ router.get('/:idAlumn/newcomment', async (req, res, next) =>{
 router.post('/:idAlumn/newcomment', async (req, res, next) =>{
   try {
     const {comment} = req.body;
-    const newComment = await Comment.create({comment, madeBy: req.session.user._id, madeTo: req.params.idAlumn  })
-
-    console.log(newComment)
+    const newComment = await Comment.create({comment, madeBy: req.session.user._id, madeTo: req.params.idAlumn  });
 
     res.redirect(`/alumn/${req.params.idAlumn}/details`)
 
   } catch (error) { next(error)}
 })
+
+//GET '/alumn/find-list/:alumn'
+
+
+
+//POST '/alumn/find-list/:alumn'
 
 
 

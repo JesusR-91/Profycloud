@@ -18,6 +18,7 @@ router.post("/signup", async (req, res, next) => {
     const regexPattern =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
     const foundEmail = await User.findOne({ email: email });
+    
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/signup", {
@@ -82,11 +83,12 @@ router.post("/login", async (req, res, next) => {
       });
       return;
     }
-    //!Encriptación contraseña
     const isPasswordCorrect = await bcrypt.compare(
       password,
       foundUser.password
     );
+
+    //!Encriptación contraseña
     if (isPasswordCorrect === false) {
       res.render("auth/login", {
         errorMessage: "Contraseña no valida",

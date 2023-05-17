@@ -1,4 +1,10 @@
 const router = require('express').Router();
+
+//Models
+const Alumn = require('../models/Alumn.model');
+const Class = require('../models/Class.model');
+
+//Middlewares
 const {isLoggedIn, updateLocals, adminLocals} = require('../middlewares/middlewares');
 
 router.use(updateLocals, adminLocals);
@@ -12,6 +18,36 @@ router.use(isLoggedIn);
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+
+//POST for the finder
+
+router.post('/find', async (req, res, next)=>{
+  try {
+  const {find} = req.body;
+  let regexLet = /^(?=.*[a-zA-Z])$/gm;
+
+  if ((find !== undefined) && (find.length <= 2)) {
+    const foundClass = await Class.findOne({$and: [{name: find[0]}, {subName: find[1]}]});
+    res.redirect(`/class/${foundClass._id}`)
+  } else if ((find !== undefined) && (find.length === 3)){
+    const foundClass = await Class.findOne({$and: [{name: find[0]}, {subName: find[2]}]});
+    res.redirect(`/class/${foundClass._id}`)
+  } else if ((find !== undefined) && (find.length > 3)) {
+    let alumn = find.split(' ');
+    if(alumn.length === 1) {
+      res.redirect(`/alumn/find-list/${find[0]}`);
+    } else {
+      res.redirect(`/alumn/${foundAlumn._id}/details`);
+      const foundAlumn = await Alumn.findOne({$and: [{firstName: alumn[0]}, {lastName: alumn[1]}]});
+    }
+  } else {
+    res.render('/', {
+      errorMessage: 'Try to be more specific, if your are looking for a class, you should put something like "1 A", if you are looking for an alumn, '
+    })
+  }
+
+  } catch (error) { next(error)}
+})
 
 const adminRouter = require('./admin.routes');
 router.use('/admin', adminRouter);
