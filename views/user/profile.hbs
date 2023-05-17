@@ -1,38 +1,27 @@
-<div>
+<div >
+  <h2>{{firstName}}'s profile: </h2>
+  <br />
+  <div>
+  <img src={{image}} alt="profile-photo" width="200px" />
+  </div>
+  <div>
     <div>
-        <h2>Your profile: </h2>
-        <br>
-            <img src= {{image}} alt="profile-photo" width="200px">
-        <div>
-
-        </div>
-
-        <div>
-            <div>
-                <h2>{{firstName}} {{lastName}}</h2>
-            </div>
-
-            <br>
-
-            <div>
-                <p>Email: {{email}}</p>
-
-                <br>
-
-                <div>
-                    <h5>Your classes:</h5>
-                    <ul>
-                        {{#each class}}
-                            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-       
-            <br>
-        </div>
-    
-    <a href="/user/edit" class ="btn btn-secondary">Edit</a>
-
+      <h2>{{firstName}} {{lastName}}</h2>
+    </div>
+    <br />
+    <div>
+      <p>Email: {{email}}</p>
+      <br />
+      <div>
+        <h5>Your classes:</h5>
+        <ul>
+          {{#each class}}
+            <li><a href="/class/{{this._id}}">{{name}} {{subName}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <br />
+  </div>
+  <a href="/user/edit" class="btn btn-secondary">Edit</a>
 </div>
-
