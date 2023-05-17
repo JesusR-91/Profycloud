@@ -9,7 +9,6 @@ const commentSchema = new Schema ({
     madeTo: {
         type: Schema.Types.ObjectId,
         ref: 'Alumn',
-
     },
 },
 { 
@@ -17,6 +16,6 @@ const commentSchema = new Schema ({
 }
 )
 
-const Comment = model('Alumn', commentSchema);
+const Comment = model('Comment', commentSchema);
 
 module.exports = Comment;

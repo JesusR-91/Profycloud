@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const Alumn = require("../models/Alumn.model.js");
-const Class = require('../models/Class.model.js')
-
-const uploader = require('../middlewares/cloudinary.middleware.js');
+const Class = require('../models/Class.model.js');
 const User = require("../models/User.model.js");
+const Comment = require ('../models/Comment.model.js');
+const uploader = require('../middlewares/cloudinary.middleware.js');
 
 const {isLoggedIn} = require('../middlewares/middlewares');
 
@@ -13,17 +13,21 @@ router.use(isLoggedIn);
 //GET /alumn/:idAlumno/details
 router.get("/:idAlumn/details", async(req, res, next) => {
   try {
+    //variables
     const foundUser = await User.findById(req.session.user._id).populate('tutorClass');
     const alumnDetails = await Alumn.findById(req.params.idAlumn);
-    const {tutorClass} = foundUser;
-    let isTutor = false;
     const {_id, firstName,lastName, image, classroom, contactEmail, contactPerson, contactPhone } = alumnDetails;
 
-    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === classroom)){
+    //tutor finding
+    const {tutorClass} = foundUser;
+    let isTutor = false;
+    if (((tutorClass !== undefined) && (`${tutorClass.name} ${tutorClass.subName}`) === classroom))
       isTutor = true;
-    } 
-     
-    res.render("alumn/profile.hbs", {_id, firstName, lastName, image, classroom, contactEmail, contactPerson, contactPhone, isTutor});
+    
+    const alumnComments = await Comment.find({madeTo: req.params.idAlumn}).populate('madeBy');
+    console.log(alumnComments)
+       
+    res.render("alumn/profile.hbs", {_id, firstName, lastName, image, classroom, contactEmail, contactPerson, contactPhone, isTutor, alumnComments});
 
   } catch (error) {
     next(error)
@@ -110,26 +114,27 @@ router.post("/:idAlumn/delete", async (req, res, next) => {
 
 //GET "/alumn/:idAlumn/newcomment"
 
-
-// router.get('/:idAlumn/newcomment', async (req, res, next) =>{
-//   try {
-//     res.render('/alumn/newcomment')
-//   } catch (error) { next(error)}
-// })
-
-/* router.get('/:idAlumn/newcomment', async (req, res, next) =>{
+router.get('/:idAlumn/newcomment', async (req, res, next) =>{
   try {
-    res.render('/alumn/newcomment')
+    const alumn = await Alumn.findById(req.params.idAlumn);
+    res.render('alumn/newcomment', alumn);
   } catch (error) { next(error)}
 })
 
-// //POST "/alumn/:idAlumn/newcomment"
+// POST "/alumn/:idAlumn/newcomment"
 
-// router.post('/:idAlumn/newcomment', async (req, res, next) =>{
-  
-// })
+router.post('/:idAlumn/newcomment', async (req, res, next) =>{
+  try {
+    const {comment} = req.body;
+    const newComment = await Comment.create({comment, madeBy: req.session.user._id, madeTo: req.params.idAlumn  })
+
+    console.log(newComment)
+
+    res.redirect(`/alumn/${req.params.idAlumn}/details`)
+
+  } catch (error) { next(error)}
 })
- */
+
 
 
 module.exports = router;

@@ -27,14 +27,14 @@
     {{/if}}
     <br>
     <div>
-        {{!-- <h5>Comments: </h5>
-        {{#each}}
+        <h5>Comments: </h5>
+        {{#each this.alumnComments}}
             <div>
-                <h8>Made by: {{madeBy}}</h8>
-                <p>Time: {{createdAt}} </p>
-                <p>{{comment}}</p>
+                <h8>Made by: {{this.madeBy.firstName}} {{this.madeBy.lastName}}</h8>
+                <p>Comment: {{this.comment}}</p>
+                <p>Time: {{this.createdAt}} </p>
             </div>
-        {{/each}} --}}
+        {{/each}}
 
         <button> <a href="/alumn/{{./_id}}/newcomment">Add a new comment</a></button>
     </div>
