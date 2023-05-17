@@ -37,7 +37,8 @@ router.get("/:idUser", async (req, res, next) => {
 router.get("/:idUser/edit", async (req, res, next) => {
   try {
     const editUser = await User.findById(req.params.idUser).populate("class");
-    res.render("admin/users-edit.hbs", editUser);
+    const allClasses = await Class.find();
+    res.render("admin/users-edit.hbs", {editUser, allClasses});
   } catch (error) {
     next(error);
   }
@@ -56,7 +57,7 @@ router.post(
       } else {
         profileImg = req.file.path;
       }
-      console.log(req.body);
+
       await User.findByIdAndUpdate(req.params.idUser, {
         email,
         password,
@@ -118,15 +119,13 @@ router.post("/class/:idClass/edit", async (req, res, next) => {
     }
     const editClass = await Class.findByIdAndUpdate(req.params.idClass, {name, subName});
     let allProfessors = await User.find();
-    console.log(allProfessors, profArray, editClass)
     for (let i = 0; i < allProfessors.length; i++){
-      for(let j = 0; j < profArray.length; j++){
-        if((allProfessors[i].class.includes(editClass._id) === false) && (allProfessors[i]._id === profArray[j])){
-          await User.findByIdAndUpdate(allProfessors[i]._id, {$push: {class: editClass._id}});
-          break;
-        } else if ((allProfessors[i].class.includes(editClass._id) === true) && (allProfessors[i]._id !== profArray[j])){
-          await User.findByIdAndUpdate(allProfessors[i]._id, {$pull: {class: editClass._id}});
-        }
+      if ((profArray.includes(allProfessors[i]._id.toString()) === true) && ((allProfessors[i].class.includes(editClass._id) === false))){
+        console.log("añadiendo,", allProfessors[i]._id)
+        await User.findByIdAndUpdate(allProfessors[i]._id, {$push: {class: editClass._id}});
+      } else if ((allProfessors[i].class.includes(editClass._id) === true) && (profArray.includes(allProfessors[i]._id.toString()) ===false)){
+        console.log("removiendo,", allProfessors[i]._id)
+        await User.findByIdAndUpdate(allProfessors[i]._id, {$pull: {class: editClass._id}});
       }
     }
     res.redirect(`/admin/class/${req.params.idClass}`);

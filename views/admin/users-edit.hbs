@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h2>Edit {{firstName}} {{lastName}} profile: </h2>
+        <h2>Edit {{editUser.firstName}} {{editUser.lastName}} profile: </h2>
         <form action="/admin/{{_id}}/edit" method="post" enctype='multipart/form-data'>
             <div>
                 <label for="image" class="form-label">Profile photo: </label>
@@ -13,23 +13,27 @@
             <div>
                 <div>
                     <label for="firstName">Name: </label>
-                    <input type="text" name="firstName" value="{{firstName}}">
+                    <input type="text" name="firstName" value="{{editUser.firstName}}">
                 </div>
                 <br>
 
                 <div>
                     <label for="lastName">Last name: </label>
-                    <input type="text" name="lastName" value="{{lastName}}">
+                    <input type="text" name="lastName" value="{{editUser.lastName}}">
                 </div>
                 <br>
                 <div>
                     <label for="email">Email: </label>
-                    <input type="email" name="email" value="{{email}}">
+                    <input type="email" name="email" value="{{editUser.email}}">
                 </div>
                 <br>
                 <div>
-                   <label for="tutorClass">Es tutor?</label>
-                   <input type="text" name ="tutorClass" value="{{tutorClass}}"
+                   <label for="tutorClass">Tutor of: </label>
+                   <select name="tutorClass">
+                        {{#each allClasses}}
+                            <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
+                        {{/each}}
+                   </select>
                 </div>
                 </div>
                 <br>
