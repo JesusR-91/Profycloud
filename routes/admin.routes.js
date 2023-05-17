@@ -81,15 +81,6 @@ router.post("/:idUser/delete", async (req, res, next) => {
   }
 });
 
-//GET  /admin/class/class
-router.get("/class/class", async (req, res, next) => {
-  try {
-    const allClasses = await Class.find();
-    res.render("admin/classes-index.hbs", { allClasses });
-  } catch (error) {
-    next(error);
-  }
-});
 
 //GET /admin/class/:idClass
  router.get("/class/:idClass", async (req, res, next) => {
@@ -119,20 +110,26 @@ router.get("/class/:idClass/edit", async (req, res, next) => {
 router.post("/class/:idClass/edit", async (req, res, next) => {
   try {
     const { name, subName, professors} = req.body;
-    let profArray = [professors]
+    let profArray = [];
+    if(typeof professors !== "object") {
+      profArray.push(professors)
+    } else {
+      professors.forEach(professor => profArray.push(professor));
+    }
     const editClass = await Class.findByIdAndUpdate(req.params.idClass, {name, subName});
     let allProfessors = await User.find();
+    console.log(allProfessors, profArray, editClass)
     for (let i = 0; i < allProfessors.length; i++){
-      for(let j = 0; j < allProfessors.length; j++){
-        if(allProfessors[i]._id === profArray[j]){
-          await User.findByIdAndUpdate(profArray[i], {$push: {class: editClass._id}});
+      for(let j = 0; j < profArray.length; j++){
+        if((allProfessors[i].class.includes(editClass._id) === false) && (allProfessors[i]._id === profArray[j])){
+          await User.findByIdAndUpdate(allProfessors[i]._id, {$push: {class: editClass._id}});
           break;
         } else if ((allProfessors[i].class.includes(editClass._id) === true) && (allProfessors[i]._id !== profArray[j])){
-          await User.findByIdAndUpdate(allProfessors[i]._id, {$pull: {class: editClass._id}} )
+          await User.findByIdAndUpdate(allProfessors[i]._id, {$pull: {class: editClass._id}});
         }
       }
     }
-    res.redirect("/admin/class/class");
+    res.redirect(`/admin/class/${req.params.idClass}`);
   } catch (error) {
     next(error);
   }
