@@ -20,16 +20,19 @@ router.use(isLoggedIn);
 router.get("/", async (req, res, next) => {
   try {
     const user = await User.findById(req.session.user._id).populate('tutorClass');
-    const alumns = await Alumn.find({classroom: `${user.tutorClass.name} ${user.tutorClass.subName}`});
-    const allComments = await Comment.find({madeTo: alumns}).populate('madeBy');
-    const alumnsComments = await Comment.find({madeTo: alumns}).populate('madeTo').select({madeTo: 1})
-
-    alumnsComments.forEach(alumn =>{
-      allComments.forEach(comment => {
-        comment.madeTo = alumn.madeTo;
+    if(user.tutorClass !== undefined) {
+      const alumns = await Alumn.find({classroom: `${user.tutorClass.name} ${user.tutorClass.subName}`});
+      const allComments = await Comment.find({madeTo: alumns}).populate('madeBy');
+      const alumnsComments = await Comment.find({madeTo: alumns}).populate('madeTo').select({madeTo: 1})
+  
+      alumnsComments.forEach(alumn =>{
+        allComments.forEach(comment => {
+          comment.madeTo = alumn.madeTo;
+        })
       })
-    })
-    res.render("index", {allComments});
+      res.render("index", {allComments});
+    }
+    res.render("index");
   } catch (error) {next(error)}
 });
 
