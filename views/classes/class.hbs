@@ -1,20 +1,22 @@
 <div>
   <h2>Welcome to {{oneClass.name}} {{oneClass.subName}}:</h2>
-  <div class="allCards card">
+  <div class="oneClass card-group">
+    <div class="card">
       <span>Alumnos:</span>
     <br>
       {{#each oneClass.alumns}}
         <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
         <br>
       {{/each}}
-    
+    </div>
+    <div class="card">
     <span>Profesores:</span>
     <br>
       {{#each professorsClass}}
         <a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a>
         <br>
       {{/each}}
-    
+    </div>
 
     <br>
   </div>

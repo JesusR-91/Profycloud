@@ -15,8 +15,8 @@ h1 {
 
 .web {
   background-color: #f1ead7;
-  margin-left: 12%;
-  margin-right: -55%;
+  margin-left: 30%;
+
   
 }
 
@@ -62,14 +62,14 @@ h1 {
 }
 .perfilAlumno ul {
   list-style-type: none;
-  margin-left: -30px;
+
 }
 
 .perfilAlumno img {
   width: 80%;
   border-top-right-radius: 0;
   border-bottom-left-radius: calc(0.25rem - 1px);
-  margin-left: 35%;
+
 }
 
 
@@ -79,5 +79,14 @@ h1 {
   align-items: stretch;
   flex-wrap: wrap;
   flex-direction: row;
-margin-right: 50%;
+  
+}
+
+.oneCLass {
+  display: flex;
+  gap: 100px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex-direction: row;
+
 }
