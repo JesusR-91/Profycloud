@@ -1,7 +1,8 @@
 body {
-  padding: 30px;
+
   font: 14px 'Roboto', sans-serif;
   background-color: #f1ead7;
+  margin: 2%;
 }
 
 a {
@@ -27,7 +28,7 @@ h1 {
 .footer{
   font-weight: bold;
   position: fixed;
-  width: 96.5%;
+  width:96%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

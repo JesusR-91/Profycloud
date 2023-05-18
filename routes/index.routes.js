@@ -55,7 +55,13 @@ router.post('/', async (req, res, next)=>{
       res.redirect(`/alumn/find-list/${alumn[0]}`);
     } else {
       const foundAlumn = await Alumn.findOne({$and: [{firstName: alumn[0]}, {lastName: alumn[1]}]});
-      res.redirect(`/alumn/${foundAlumn._id}/details`);
+      if( foundAlumn === null) {
+        res.render('index.hbs', {
+          errorMessage: 'Alumn not found.'
+        })
+      } else {
+        res.redirect(`/alumn/${foundAlumn._id}/details`);
+      }
     }
   } else {
     res.render('index.hbs', {
