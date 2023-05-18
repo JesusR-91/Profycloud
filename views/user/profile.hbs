@@ -1,25 +1,25 @@
-<div class="perfilUsuario card">
+<div class = "card-container">
+  <div class="perfilUsuario card">
 
-  <div>
-    <img src={{image}} alt="profile-photo" style="width:200px" class="card-img-top" />
-  </div>
-
-  <div class="card-body">
-    <br />
-      <h2>{{firstName}} {{lastName}}</h2>
     <div>
-      <p>Email: {{email}}</p>
-      <br />
-      <div>
-        <h5>Your classes:</h5>
-        <ul>
-          {{#each class}}
-         <li><a href="/class/{{this._id}}"> {{name}} {{subName}}</a></li>
-
-          {{/each}}
-        </ul>
-      </div>
+      <img src={{image}} alt="profile-photo" style="width:200px" class="card-img-top" />
     </div>
-    <a href="/user/edit" class="btn btn-secondary ">Edit</a>
+
+    <div class="card-body user-info">
+      <br />
+        <h2>{{firstName}} {{lastName}}</h2>
+      <div>
+        <p>Email: {{email}}</p>
+        <div>
+          <h5>Your classes:</h5>
+          <ul>
+            {{#each class}}
+              <a href="/class/{{this._id}}"> {{name}} {{subName}}</a>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <a href="/user/edit" class="btn btn-secondary ">Edit</a>
+    </div>
   </div>
 </div>

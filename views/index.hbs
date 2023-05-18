@@ -1,25 +1,29 @@
 <div>
-    <div>
-        <form action="/" method="post">
-            <input type="text" name="find" placeholder="Look for a specific alumn or class">
-            <button>Find it</button>
+    <div class = "index">
+    <h2>Home</h2>
+        <form action="/" method="post" class="d-flex">
+            <input type="text" name="find" placeholder="Look for a specific alumn or class"  class="form-control me-2" style="width: 300px;">
+            <button class="btn btn-secondary ">Find it</button>
             <br>
         </form>
             {{#if this.errorMessage}}
                 <p style="color: red;">{{errorMessage}}</p>
             {{/if}}
     </div>
-    <h2>Home</h2>
 
     <br>
 
-    <div>
-        <h4>All the comments your alumns received: </h4>
+    <h4>All the comments your alumns received: </h4>
+    <div class = "comment-list">
         {{#each allComments}}
-            <div>
-                <h6>Made by: {{this.madeBy.firstName}} {{this.madeBy.lastName}}</h6>
-                <p>Made to: {{this.madeTo.firstName}} {{this.madeTo.lastName}}</p>
-                <p>Comment: {{this.comment}}</p>
+            <div class="container card comments">
+                <h6><b>Made by:</b> {{this.madeBy.firstName}} {{this.madeBy.lastName}}</h6>
+                <br>
+                <p><b>Made to: </b>{{this.madeTo.firstName}} {{this.madeTo.lastName}}</p>
+                <br>
+                <p><b>Comment:</b> {{this.comment}}</p>
+                <br>
+                <p><b>Time: </b>{{this.createdAt}} </p>
             </div>
         {{/each}}
     </div>

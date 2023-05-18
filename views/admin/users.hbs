@@ -1,39 +1,39 @@
-<div class="perfilUsuario card">
+<div class = "card-container">
+  <div class="perfilUsuario card">
 
-  <div>
-    <img src={{oneUser.image}} alt="profile-photo" style="width:200px" class="card-img-top"/>
+    <div>
+      <img src={{oneUser.image}} alt="profile-photo" style="width:200px" class="card-img-top"/>
+    </div>
+
+    <div class="card-body">
+      <div>
+        <h2> <b>Name:</b> {{oneUser.firstName}} {{oneUser.lastName}}</h2>
+      </div>
+
+      <br />
+
+      <div>
+        <p> <b>Tutor of class:</b>  {{oneUser.tutorClass.name}} {{oneUser.tutorClass.subName}}</p>
+      </div>
+      <br>
+
+      <div>
+        <p> <b>Email: </b>  {{oneUser.email}}</p>
+      </div>
+
+      <br />
+
+      <div>
+        <h5> <b>Classes:</b></h5>
+        <ul>
+          {{#each this.userClasses.class}}
+            <li><a href="/class/{{this._id}}">{{this.name}} {{this.subName}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <br />
+      <a href="/admin/{{oneUser._id}}/edit" class="btn btn-secondary">Edit</a>
+    </div>
   </div>
-
-  <div class="card-body">
-    <div>
-      <h2> <b>Name:</b> {{oneUser.firstName}} {{oneUser.lastName}}</h2>
-    </div>
-
-    <br />
-
-    <div>
-      <p> <b>Tutor of class:</b>  {{oneUser.tutorClass.name}} {{oneUser.tutorClass.subName}}</p>
-    </div>
-    <br>
-
-    <div>
-      <p> <b>Email: </b>  {{oneUser.email}}</p>
-    </div>
-
-    <br />
-
-    <div>
-      <h5> <b>Classes:</b></h5>
-      <ul>
-        {{#each this.userClasses.class}}
-          <li><a href="/class/{{this._id}}">{{this.name}} {{this.subName}}</a></li>
-        {{/each}}
-      </ul>
-    </div>
-
-    <br />
-    <a href="/admin/{{oneUser._id}}/edit" class="btn btn-secondary">Edit</a>
-  </div>
-
-
 </div>

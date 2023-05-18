@@ -17,8 +17,27 @@ h1 {
 .web {
   background-color: #f1ead7;  
 }
-.nav {
-  height: 10%;
+
+.index{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer{
+  font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 50px;
+  text-align: center;
+  height: 5%;
+}
+.profiles{
+  display: flex;
+  flex-direction: row;
 }
 .form {
   display: flex;
@@ -35,13 +54,24 @@ h1 {
   transform: translate(-50%, -50%);
   padding: 10px;
 }
+.card-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .perfilUsuario {
   display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   flex-direction: row;
-  width: 500px;
+  width: 450px;
+}
+.user-info{
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .perfilUsuario ul {
   list-style-type: none;
@@ -58,9 +88,12 @@ h1 {
 }
 
 .perfilAlumno {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 500px;
+  padding: 2%;
 }
 .perfilAlumno ul {
   list-style-type: none;
@@ -148,4 +181,17 @@ h1 {
 .adminCard {
   display: flex;
   align-items: center;
+}
+
+.comment-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2%;
+  gap: 10px;
+}
+
+.comments {
+  max-height: 250px;
+  overflow-y: auto;
 }

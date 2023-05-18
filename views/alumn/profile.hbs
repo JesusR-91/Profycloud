@@ -1,9 +1,9 @@
-<div>
-    <div class=" align-items-center text-center perfilAlumno card col-sm-6 col-md-6">
+<div class = "">
+    <div class=" text-center perfilAlumno card">
  
         <br>
         <div>
-            <img src= {{image}} alt="profile-photo" width="200px" class="card-img-top">
+            <img src= {{image}} alt="profile-photo" style = "width:200px" class="card-img-top">
         </div>
 
         <br>
@@ -22,23 +22,29 @@
             </ul>
        
             <br>
-    {{#if this.isTutor}}
-        <button class="btn btn-secondary "><a href="/alumn/{{./_id}}/edit" >Edit</a></button>
-    {{/if}}
+            {{#if this.isTutor}}
+                <a href="/alumn/{{./_id}}/edit" class="btn btn-secondary">Edit</a>
+            {{/if}}
         </div>
 
     </div>
     <br>
     <div>
         <h5>Comments: </h5>
-        {{#each this.alumnComments}}
-            <div>
-                <h8>Made by: {{this.madeBy.firstName}} {{this.madeBy.lastName}}</h8>
-                <p>Comment: {{this.comment}}</p>
-                <p>Time: {{this.createdAt}} </p>
-            </div>
-        {{/each}}
-
-        <button class="btn btn-secondary "> <a href="/alumn/{{./_id}}/newcomment" >Add a new comment</a></button>
+        <br>
+        <a href="/alumn/{{./_id}}/newcomment" class="btn btn-secondary ">Add a new comment</a>
+        <br>  
+        <div class = "comment-list">
+            {{#each this.alumnComments}}
+                <div class="container card comments">
+                    <h8><b>Made by:</b>{{this.madeBy.firstName}} {{this.madeBy.lastName}}</h8>
+                    <br>
+                    <p><b>Comment: </b>{{this.comment}}</p>
+                    <br>
+                    <p><b>Time: </b>{{this.createdAt}} </p>
+                </div>
+            {{/each}}
+            <br>
+        </div>
     </div>
 </div>

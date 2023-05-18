@@ -1,5 +1,5 @@
-<div>
-    <div>
+<div class = "card-container">
+    <div class = "classForm card">
 
     <form action="/alumn/create" method="post" enctype='multipart/form-data'>
             <div>
@@ -11,15 +11,19 @@
             <br>
 
             <div>
-                <div>
-                    <label for="firstName">Name: </label>
-                    <input type="text" name="firstName">
+                <div class="mb-3 row">
+                    <label for="firstName" class="col-sm-2 col-form-label"><b>Name:</b></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="firstName" class="form-control">
+                    </div>
                 </div>
                 <br>
 
-                <div>
-                    <label for="lastName">Last name: </label>
-                    <input type="text" name="lastName">
+                <div class="mb-3 row">
+                    <label for="lastName" class="col-sm-2 col-form-label"><b>Last name:</b> </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="lastName" class="form-control">
+                    </div>
                 </div>
                 <br>
                 <div>

@@ -1,32 +1,32 @@
-<div class = "classForm card">
- 
-<h3>Creación</h3>
-  <div>
-    <form
-      action="/admin/class/create/newClass"
-      method="post"
-    >
+<div class = "card-container">
+  <div class = "classForm card">
+    <h3>Creación</h3>
       <div>
-        <label for="name">Grade: </label>
-        <input type="number" name="name"/>
-      </div>
-      <br />
-      <div>
-        <label for="subName">Letter: </label>
-        <input type="text" name="subName"/>
-      </div>
-      <br />
-      <div>
-        <label for="professors">Professors: </label>
-        <select name="professors" multiple="true">
-          {{#each allProfessors}}
-            <option value="{{_id}}">{{firstName}} {{lastName}}</option>
-          {{/each}}
-        </select>
-      </div>
+        <form
+          action="/admin/class/create/newClass"
+          method="post"
+        >
+          <div>
+            <label for="name">Grade: </label>
+            <input type="number" name="name"/>
+          </div>
+          <br />
+          <div>
+            <label for="subName">Letter: </label>
+            <input type="text" name="subName"/>
+          </div>
+          <br />
+          <div>
+            <label for="professors">Professors: </label>
+            <select name="professors" multiple="true">
+              {{#each allProfessors}}
+                <option value="{{_id}}">{{firstName}} {{lastName}}</option>
+              {{/each}}
+            </select>
+          </div>
 
-      <br />
-      <button class="btn btn-secondary">Create</button>
-    </form>
-
+          <br />
+          <button class="btn btn-secondary">Create</button>
+        </form>
+  </div>
 </div>
