@@ -22,7 +22,7 @@ router.post("/signup", async (req, res, next) => {
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/signup", {
-        errorMessage: "El email y password son obligatorios",
+        errorMessage: "You shall not pass!.",
       });
       return;
     }
@@ -30,14 +30,14 @@ router.post("/signup", async (req, res, next) => {
     if (regexPattern.test(password) === false) {
       res.render("auth/signup", {
         errorMessage:
-          "La contraseña debe tener minimo 8 caracteres, mayuscula, minuscula y caracter especial",
+          "The code of honour must be more intricate.",
       });
       return;
     }
     //! Usuario Existente
     if (foundEmail !== null) {
       res.render("auth/signup", {
-        errorMessage: "Este correo ya esta registrado",
+        errorMessage: "Registered already email this is.",
       });
       return;
     }
@@ -72,14 +72,14 @@ router.post("/login", async (req, res, next) => {
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/login", {
-        errorMessage: "El email y password son obligatorios",
+        errorMessage: "Email and password required are.",
       });
       return;
     }
     //! Usuario Inexistente
     if (foundUser === null) {
       res.render("auth/login", {
-        errorMessage: "Este correo no esta registrado",
+        errorMessage: "I've no memory of this email.",
       });
       return;
     }
@@ -91,7 +91,7 @@ router.post("/login", async (req, res, next) => {
     //!Encriptación contraseña
     if (isPasswordCorrect === false) {
       res.render("auth/login", {
-        errorMessage: "Contraseña no valida",
+        errorMessage: "Password invalid it's.",
       });
       return;
     }

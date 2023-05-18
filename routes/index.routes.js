@@ -59,7 +59,7 @@ router.post('/', async (req, res, next)=>{
     }
   } else {
     res.render('index.hbs', {
-      errorMessage: 'Try to be more specific.'
+      errorMessage: 'More specific you need to be.'
     })
     return;
   }
