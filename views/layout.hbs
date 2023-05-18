@@ -45,19 +45,19 @@
     {{{body}}}
 
     <br>
-  
-    <ul class=" footer shadow-lg p-3 mb-5 bg-white rounded">
+  {{#if isUserActive}}
+    <ul class="footer shadow-lg p-3 mb-5 bg-white rounded align-items-center" style="top:96%">
       <p>Made by:</p>
-      <div class = "profiles">
+      <div class = "d-flex align-items-center">
         <p>Maisha Fumanal: </p>
-        <a href="https://www.linkedin.com/in/maishafn/"><img src="/images/Linkedin.png" alt="Linkedin" style="width: 25px"></a>
+        <a href="https://www.linkedin.com/in/maishafn/" style=";padding: 0 0 20 10"><img src="/images/Linkedin.png" alt="Linkedin" style="width: 25px;"></a>
       </div>
-      <div class = "profiles">
+      <div class = "d-flex align-items-center">
         <p>Jesús M. Ruiz: </p>
-        <a href="https://www.linkedin.com/in/jes%C3%BAs-manuel-ruiz-ja%C3%A9n-24714472/"><img src="/images/Linkedin.png" alt="Linkedin" style="width: 25px"></a>
+        <a href="https://www.linkedin.com/in/jes%C3%BAs-manuel-ruiz-ja%C3%A9n-24714472/" style=";padding: 0 0 20 10"><img src="/images/Linkedin.png" alt="Linkedin" style="width: 25px"></a>
       </div>
     </ul>
-
+  {{/if}}
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

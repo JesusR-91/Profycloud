@@ -1,35 +1,35 @@
-<div class = "loginSignup">
-<div
-  class="d-flex flex-column align-items-center text-center"
-  style="width: 600px"
->
-  <br />
+<div class="loginSignup">
+  <div
+    class="d-flex flex-column align-items-center text-center"
+    style="width: 600px"
+  >
+    <br />
 
-  <img src="images/english-version.png" alt="cover" class="card-img-top" />
-  <div>
-    <form action="/login" method="post" class="row g-3" style="width: 400px;">
-      <div>
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" />
-      </div>
-      <br />
-      <div>
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" />
-      </div>
-      <br />
-      <button
-        class="btn btn-primary btn-lg"
-        style="background-color: #010158"
-      >Log In</button>
-      <br />
-      {{#if this.errorMessage}}
-        <p style="color: red;">{{errorMessage}}</p>
-      {{/if}}
-      <br />
-      <p>No estás registrado aún,
-        <a href="/signup" style="color: #010158">regístrate aquí.</a></p>
-    </form>
+    <img src="images/english-version.png" alt="cover" class="card-img-top" />
+    <div>
+      <form action="/login" method="post" class="row g-3" style="width: 400px;">
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" class="form-control" />
+        </div>
+        <br />
+        <div>
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" />
+        </div>
+        <br />
+        <button
+          class="btn btn-primary btn-lg text-center "
+          style="background-color: #010158"
+        >Log In</button>
+        <br />
+        {{#if this.errorMessage}}
+          <p style="color: red;">{{errorMessage}}</p>
+        {{/if}}
+        <br />
+        <p>If you are not registered yet,
+          <a href="/signup" style="color: #010158">click here.</a></p>
+      </form>
+    </div>
   </div>
-</div>
 </div>

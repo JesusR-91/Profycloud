@@ -26,18 +26,13 @@ h1 {
 .footer{
   font-weight: bold;
   position: fixed;
-  bottom: 0;
-  width: 95%;
+  width: 96.5%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   gap: 50px;
   text-align: center;
-  height: 5%;
-}
-.profiles{
-  display: flex;
-  flex-direction: row;
+  height: 6%;
 }
 .form {
   display: flex;
