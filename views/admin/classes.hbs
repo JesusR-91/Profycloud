@@ -1,24 +1,31 @@
-<div>
-  <h2>Welcome to {{oneClass.name}} {{oneClass.subName}}:</h2>
-  <div>
+
+<h2>Welcome to {{oneClass.name}} {{oneClass.subName}}:</h2>
+<br>
+<div class="class">
+  <div class="oneClass card-group">
+    <div class="container card">
       <span>Alumnos:</span>
-    <ul>
-      {{#each oneClass.alumns}}
-        <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
-      {{/each}}
-    </ul>
+    <br>
+      <div class="alumns">
+        {{#each oneClass.alumns}}
+          <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
+          <br>
+        {{/each}}
+      </div>
+    </div>
+    <div class="container card">
     <span>Profesores:</span>
-    <ul>
+    <br>
       {{#each professors}}
-        <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+        <a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a>
+        <br>
       {{/each}}
-    </ul>
+    </div>
 
     <br>
-
-    <button><a href="/admin/class/{{oneClass._id}}/edit"> Edit Class</a></button>
   </div>
+  <br>
 
+  <a href="/admin/class/{{oneClass._id}}/edit" class="btn btn-secondary "> Edit Class</a>
   
-
 </div>

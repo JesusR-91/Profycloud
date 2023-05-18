@@ -1,8 +1,8 @@
-<div>
+<div class = "card-group classList admin">
 
+
+    <div class = "container card">
     <h2>Lista de Usuarios</h2>
-
-    <div>
         {{#each allUsers}}
 
         <li><a href="admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
@@ -11,12 +11,14 @@
         {{/each}}
     </div>
     <br>
-<h2>Lista de Clases</h2>
-    <div>
+    <div class = "container card adminCard">
+        <h2>Lista de Clases</h2>
+
         {{#each allClasses}}
-        <li><a href="admin/class/{{_id}}">{{name}} {{subName}}</a></li>
-        <br>
+            <li><a href="admin/class/{{_id}}">{{name}} {{subName}}</a></li>
+            <br>
         {{/each}}
- <button><a href="/admin/class/create/newClass"> Create a new Class</a></button>
+
+        <a href="/admin/class/create/newClass" class = "btn btn-secondary"> Create a new Class</a>
     </div>
 </div>
