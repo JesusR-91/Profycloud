@@ -3,7 +3,6 @@ const { Schema, model } = require("mongoose");
 const classSchema = new Schema({
     name: Number,
     subName: String,
-    Subject: [String],
     alumns: [{
         type: Schema.Types.ObjectId,
         ref: 'Alumn',

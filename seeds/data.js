@@ -1,12 +1,10 @@
 const classes = [
-    {name: 1,subName: "A", Subject: ["Matemáticas", "Física", "Programación", "Tecnología"], alumns: ["645e6bd1b658895bb3ea1715", "645e6bd1b658895bb3ea1716", "645e6bd1b658895bb3ea1717", "645e6bd1b658895bb3ea1718"]},
-    {name: 1,subName: "B", Subject: ["Matemáticas", "Física", "Programación", "Tecnología"], alumns: ["645e70d729c60855e9b9c90a", "645e70d729c60855e9b9c90b", "645e70d729c60855e9b9c90c", "645e70d729c60855e9b9c90d"]},
-    {name: 2,subName: "A", Subject: ["Biología", "Química", "Educación física", "Tecnología"]},
-    {name: 2,subName: "B", Subject: ["Biología", "Química", "Educación física", "Tecnología"]},
-    {name: 3,subName: "A", Subject: ["Química", "física", "programación", "Biología"]},
-    {name: 3,subName: "B", Subject: ["Química", "física", "programación", "Biología"]},
-    {name: 4,subName: "A", Subject: ["Biología", "Física", "Química", "Tecnología"]},
-    {name: 4,subName: "B", Subject: ["Biología", "Física", "Química", "Tecnología"]},
+    {name: 1,subName: "A", alumns:[] },
+    {name: 1,subName: "B", alumns: [] },
+    {name: 2,subName: "A",alumns: []},
+    {name: 2,subName: "B",alumns: []},
+    {name: 3,subName: "A",alumns: []},
+    {name: 3,subName: "B",alumns: []},
 ]
 
 const alumns =[
@@ -76,23 +74,33 @@ const Alumn = require('../models/Alumn.model');
 require('../db/index');
 const alumnsData = require('./alumn.json')
 
+console.log(alumnsData)
+
+alumnsData.forEach(alumn =>{
+  classes.forEach(clase => {
+    if (alumn.classroom === `${clase.name} ${clase.subName}`){
+      clase.alumns.push(alumn.id);
+    }
+  })
+})
+
 //  User.insertMany(professors)
 //  .then(()=>{
 //  console.log('Usuarios metidos en base de dato')
 //  })
 // .catch(err => console.log(err))
-//  Class.insertMany([classes[1]])
+//  Class.insertMany(classes)
 //  .then(()=>{
 //  console.log('Clases metidos en base de dato')
 //  })
 //  .catch(err => console.log(err))
 
-Alumn.insertMany(alumnsData)
-.then(()=>{
-console.log('Alumnos metidos en base de dato')
-mongoose.connection.close();
-})
-.catch(err => console.log(err))
+// Alumn.insertMany(alumnsData)
+// .then(()=>{
+// console.log('Alumnos metidos en base de dato')
+// mongoose.connection.close();
+// })
+// .catch(err => console.log(err))
 
 
 

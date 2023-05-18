@@ -20,7 +20,7 @@ router.use(isLoggedIn);
 router.get("/", async (req, res, next) => {
   try {
     const user = await User.findById(req.session.user._id).populate('tutorClass');
-    if(user.tutorClass !== undefined) {
+    if((user !== undefined) & (user.tutorClass !== undefined)) {
       const alumns = await Alumn.find({classroom: `${user.tutorClass.name} ${user.tutorClass.subName}`});
       const allComments = await Comment.find({madeTo: alumns}).populate('madeBy');
       const alumnsComments = await Comment.find({madeTo: alumns}).populate('madeTo').select({madeTo: 1})
