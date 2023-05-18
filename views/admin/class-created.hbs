@@ -1,23 +1,23 @@
 <div class = "card-container">
   <div class = "classForm card">
-    <h3>Creación</h3>
+    <h3><b>Create a new class:</b></h3>
       <div>
         <form
           action="/admin/class/create/newClass"
           method="post"
         >
           <div>
-            <label for="name" class="form-label"></label>>Grade: </label>
+            <label for="name" class="form-label"></label><b>Grade:</b></label>
             <input type="number" name="name"/ class="form-control">
           </div>
           <br />
           <div>
-            <label for="subName" class="form-label"></label>>Letter: </label>
+            <label for="subName" class="form-label"></label><b>Letter:</b></label>
             <input type="text" name="subName"/ class="form-control">
           </div>
           <br />
           <div>
-            <label for="professors" class="form-label"></label>>Professors: </label>
+            <label for="professors" class="form-label"></label><b>Professors:</b></label>
             <select name="professors" multiple="true" class="form-control">
               {{#each allProfessors}}
                 <option value="{{_id}}">{{firstName}} {{lastName}}</option>

@@ -1,12 +1,12 @@
     <h5>Alumns list:</h5>
-<div>
+<div class="class">
 
-    <div>
-        <ul>
+    <div class="oneClass card-group">
+        <div class="container card">
             {{#each this.alumns}}
-                <li><a href="/alumn/{{this._id}}/details">{{this.firstName}} {{this.lastName}}</a></li>
+                <a href="/alumn/{{this._id}}/details">{{this.firstName}} {{this.lastName}}</a>
                 <br>
             {{/each}}
-        </ul>
+        </div>
     </div>
 </div>
