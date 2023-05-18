@@ -1,13 +1,14 @@
-<div>
     <h2>Class list:</h2>
+<div>
     
-    <div class ="text-center classIndex card col-sm-2 col-md-2">
+    <div class="allCards card-group">
         {{#each classes}}
-        <div>
+        <div  class="card">
             <h5><a href="/class/{{_id}}">{{name}} {{subName}}</a></h5>
             <ul>
             {{#each alumns}}
-                <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
+                <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
+                <br>
             {{/each}}
             </ul>
             <br>

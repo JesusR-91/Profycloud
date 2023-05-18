@@ -15,8 +15,9 @@ h1 {
 
 .web {
   background-color: #f1ead7;
-  margin-left: 22%;
-  margin-right: -30%;
+  margin-left: 12%;
+  margin-right: -55%;
+  
 }
 
 .form {
@@ -71,12 +72,12 @@ h1 {
   margin-left: 35%;
 }
 
-.classIndex {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0 18% ;
 
-  gap: 5px;
+
+.allCards{
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex-direction: row;
+margin-right: 50%;
 }

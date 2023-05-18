@@ -1,24 +1,26 @@
 <div>
   <h2>Welcome to {{oneClass.name}} {{oneClass.subName}}:</h2>
-  <div>
+  <div class="allCards card">
       <span>Alumnos:</span>
-    <ul>
+    <br>
       {{#each oneClass.alumns}}
-        <li><a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a></li>
+        <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
+        <br>
       {{/each}}
-    </ul>
+    
     <span>Profesores:</span>
-    <ul>
+    <br>
       {{#each professorsClass}}
-        <li><a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+        <a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a>
+        <br>
       {{/each}}
-    </ul>
+    
 
     <br>
+  </div>
       {{#if isTutor}}
         <button><a href="/alumn/create"> Add a new alumn</a></button>
       {{/if}}
-  </div>
 
   
 
