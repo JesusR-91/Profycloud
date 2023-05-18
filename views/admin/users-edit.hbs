@@ -1,58 +1,50 @@
-<div>
-    <div>
-        <h2>Edit {{editUser.firstName}} {{editUser.lastName}} profile: </h2>
+<div class = "card-container">
+    <div class = "classForm card">
+        <h2>Edit {{editUser.firstName}} {{editUser.lastName}}'s profile: </h2>
         <form action="/admin/{{editUser._id}}/edit" method="post" enctype='multipart/form-data'>
+
             <div>
                 <label for="image" class="form-label">Profile photo: </label>
-                <input type="file" name="image" class="form-control">
-
+                <input type="file" name="image" class="form-control" class="form-control">
             </div>
-
             <br>
-
             <div>
-                <div>
-                    <label for="firstName">Name: </label>
-                    <input type="text" name="firstName" value="{{editUser.firstName}}">
-                </div>
-                <br>
-
-                <div>
-                    <label for="lastName">Last name: </label>
-                    <input type="text" name="lastName" value="{{editUser.lastName}}">
-                </div>
-                <br>
-                <div>
-                    <label for="email">Email: </label>
-                    <input type="email" name="email" value="{{editUser.email}}">
-                </div>
-                <br>
-                <div>
-                   <label for="tutorClass">Tutor of: </label>
-                   <select name="tutorClass">
-                        {{#each allClasses}}
-                            <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
-                        {{/each}}
-                   </select>
-                </div>
-                <br>
-                <div>
-                    <label for="classes">Classes: </label>
-                    <select name="classes" multiple="true">
-                        {{#each allClasses}}
-                            <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <br>
-                <div>
-                    <button class="btn btn-secondary"><a href="/admin"></a>Commit</button>
-                </div>
+            <div>
+                <label for="firstName" class="form-label">Name: </label>
+                <input type="text" name="firstName" value="{{editUser.firstName}}" class="form-control">
             </div>
+            <br>
+            <div>
+                <label for="lastName" class="form-label">Last name: </label>
+                <input type="text" name="lastName" value="{{editUser.lastName}}" class="form-control">
+            </div>
+            <br>
+            <div>
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" name="email" value="{{editUser.email}}" class="form-control">
+            </div>
+            <br>
+            <div>
+                <label for="tutorClass" class="form-label">Tutor of: </label>
+                <select name="tutorClass" class="form-control">
+                    {{#each allClasses}}
+                        <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="classes" class="form-label">Classes: </label>
+                <select name="classes" multiple="true" class="form-control">
+                    {{#each allClasses}}
+                        <option value="{{this._id}}">{{this.name}} {{this.subName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <br>
+            <button class="btn btn-secondary" style="background-color: #010158"><a href="/admin"></a>Commit</button>
+            <form action="/admin/{{editUser._id}}/delete" method="post">
+                <button class="btn btn-secondary" style="background-color: #010158">Delete</button>
+            </form>
         </form>
-
-        <form action="/admin/{{editUser._id}}/delete" method="post">
-            <button class="btn btn-secondary">Delete</button>
-        </form>
-
 </div>

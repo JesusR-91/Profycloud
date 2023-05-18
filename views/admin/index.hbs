@@ -5,7 +5,7 @@
     <h2>Lista de Usuarios</h2>
         {{#each allUsers}}
 
-        <li><a href="admin/{{_id}}">{{firstName}} {{lastName}}</a></li>
+        <a href="admin/{{_id}}">{{firstName}} {{lastName}}</a>
         <br>
 
         {{/each}}
@@ -15,10 +15,10 @@
         <h2>Lista de Clases</h2>
 
         {{#each allClasses}}
-            <li><a href="admin/class/{{_id}}">{{name}} {{subName}}</a></li>
+            <a href="admin/class/{{_id}}">{{name}} {{subName}}</a>
             <br>
         {{/each}}
 
-        <a href="/admin/class/create/newClass" class = "btn btn-secondary"> Create a new Class</a>
+        <a href="/admin/class/create/newClass" class = "btn btn-secondary" style="background-color: #010158"> Create a new Class</a>
     </div>
 </div>

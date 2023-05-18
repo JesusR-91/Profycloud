@@ -1,44 +1,39 @@
-<div>
+<div class = "card-container">
+  <div class = "classForm card">
   <h2>Edit {{editClass.name}} {{editClass.subName}}:</h2>
-  <div>
     <form
       action="/admin/class/{{editClass._id}}/edit"
       method="post"
     >
       <div>
-        <label for="name">Grade: </label>
-        <input type="text" name="name" value="{{editClass.name}}" />
+        <label for="name" class="form-label">Grade:</label>
+        <input type="text" name="name" value="{{editClass.name}}" class="form-control"/>
       </div>
       <br />
       <div>
-        <label for="subName">Letter: </label>
-        <input type="text" name="subName" value="{{editClass.subName}}" />
+        <label for="subName" class="form-label">Letter: </label>
+        <input type="text" name="subName" value="{{editClass.subName}}" class="form-control"/>
       </div>
       <br />
         <div>
-            <label for="professors">Professors: </label>
-            <select name="professors" multiple="true">
+            <label for="professors" class="form-label">Professors: </label>
+            <select name="professors" multiple="true"  class="form-control">
             {{#each allProfessors}}
                 <option value="{{this._id}}">{{this.firstName}} {{this.lastName}}</option>
             {{/each}}
             </select>
         </div>
         <br>
-      <button class="btn btn-secondary">Commit</button>
+      <button class="btn btn-secondary" style="background-color: #010158">Commit</button>
+      <form action="/admin/class/{{editClass._id}}/delete" method="post">
+          <button class="btn btn-secondary" style="background-color: #010158">Delete</button>
+      </form>
     </form>
     <br>
-    <br>
+
     <div>
-      <h8>Alumnos:</h8>
-
-      <button><a href="/alumn/create"> Add a new alumn</a></button>
+      <a href="/alumn/create" class="btn btn-secondary" style="background-color: #010158"> Add a new alumn</a>
     </div>
-    <br />
-
-    <form action="/admin/class/{{editClass._id}}/delete" method="post">
-        <button>Delete</button>
-    </form>
-    <br />
   </div>
 
 </div>

@@ -1,8 +1,8 @@
-<div>
-
+<div class = "card-container">
+    <div class = "classForm card">
     <form action="/alumn/{{editAlumn._id}}/edit" method="post" enctype='multipart/form-data'>
             <div>
-                <label for="image" class="form-label">Profile photo: </label>
+                <label for="image" class="form-label"><b>Profile photo:</b></label>
                 <input type="file" name="image" class="form-control">
 
             </div>
@@ -11,51 +11,49 @@
 
             <div>
                 <div>
-                    <label for="firstName">Name: </label>
-                    <input type="text" name="firstName" value="{{editAlumn.firstName}}">
+                    <label for="firstName" class="form-label"><b>Name:</b></label>
+                    <input type="text" name="firstName" value="{{editAlumn.firstName}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="lastName">Last name: </label>
-                    <input type="text" name="lastName" value="{{editAlumn.lastName}}">
+                    <label for="lastName" class="form-label"><b>Last name:</b></label>
+                    <input type="text" name="lastName" value="{{editAlumn.lastName}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="name">Grade: </label>
-                    <input type="text" name="name" value="{{alumnClass.name}}">
+                    <label for="name" class="form-label"><b>Grade:</b></label>
+                    <input type="text" name="name" value="{{alumnClass.name}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="subName">Number: </label>
-                    <input type="text" name="subName" value="{{alumnClass.subName}}">
+                    <label for="subName" class="form-label"><b>Number:</b></label>
+                    <input type="text" name="subName" value="{{alumnClass.subName}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="contactPerson">Contact person: </label>
-                    <input type="test" name="contactPerson" value="{{editAlumn.contactPerson}}">
+                    <label for="contactPerson" class="form-label"><b>Contact person:</b></label>
+                    <input type="test" name="contactPerson" value="{{editAlumn.contactPerson}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="contactEmail">Contact email: </label>
-                    <input type="text" name="contactEmail" value="{{editAlumn.contactEmail}}">
+                    <label for="contactEmail" class="form-label"><b>Contact email:</b></label>
+                    <input type="text" name="contactEmail" value="{{editAlumn.contactEmail}}" class="form-control">
                 </div>
                 <br>
                 <div>
-                    <label for="contactPhone">Contact phone: </label>
-                    <input type="text" name="contactPhone" value="{{editAlumn.contactPhone}}">
-                </div>
-                <br>
+                    <label for="contactPhone" class="form-label"><b>Contact phone:</b></label>
+                    <input type="text" name="contactPhone" value="{{editAlumn.contactPhone}}" class="form-control">
                 </div>
                 <br>
 
-                <div>
-                    <button class="btn btn-secondary">Commit</button>
-                </div>
+                <button class="btn btn-secondary" style="background-color: #010158">Commit</button>
+                <form action="/alumn/{{_id}}/delete" method="post">
+                    <button class="btn btn-secondary" style="background-color: #010158">Delete</button>
+                </form>
             </div>
         </form>
 
-        <form action="/alumn/{{_id}}/delete" method="post">
-            <button>Delete</button>
-        </form>
+
+    </div>
 
 </div>

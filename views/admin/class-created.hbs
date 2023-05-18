@@ -7,18 +7,18 @@
           method="post"
         >
           <div>
-            <label for="name">Grade: </label>
-            <input type="number" name="name"/>
+            <label for="name" class="form-label"></label>>Grade: </label>
+            <input type="number" name="name"/ class="form-control">
           </div>
           <br />
           <div>
-            <label for="subName">Letter: </label>
-            <input type="text" name="subName"/>
+            <label for="subName" class="form-label"></label>>Letter: </label>
+            <input type="text" name="subName"/ class="form-control">
           </div>
           <br />
           <div>
-            <label for="professors">Professors: </label>
-            <select name="professors" multiple="true">
+            <label for="professors" class="form-label"></label>>Professors: </label>
+            <select name="professors" multiple="true" class="form-control">
               {{#each allProfessors}}
                 <option value="{{_id}}">{{firstName}} {{lastName}}</option>
               {{/each}}
@@ -26,7 +26,7 @@
           </div>
 
           <br />
-          <button class="btn btn-secondary">Create</button>
+          <button class="btn btn-secondary" style="background-color: #010158">Create</button>
         </form>
   </div>
 </div>
