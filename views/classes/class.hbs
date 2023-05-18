@@ -3,7 +3,7 @@
 <div class="class">
   <div class="oneClass card-group">
     <div class="container card">
-      <span>Alumnos:</span>
+      <span><b>Alumns:</b></span>
     <br>
       <div class="alumns">
         {{#each oneClass.alumns}}
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="container card">
-    <span>Profesores:</span>
+    <span><b>Professors:</b></span>
     <br>
       {{#each professorsClass}}
         <a href="/admin/{{_id}}">{{firstName}} {{lastName}}</a>
@@ -27,5 +27,4 @@
       {{#if isTutor}}
         <button class="btn btn-secondary buton" style="background-color: #010158"><a href="/alumn/create"> Add a new alumn</a></button>
       {{/if}}
-
 </div>

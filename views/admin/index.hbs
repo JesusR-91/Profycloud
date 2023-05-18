@@ -2,7 +2,7 @@
 
 
     <div class = "container card">
-    <h2>Lista de Usuarios</h2>
+    <h2>Users: </h2>
         {{#each allUsers}}
 
         <a href="admin/{{_id}}">{{firstName}} {{lastName}}</a>
@@ -12,7 +12,7 @@
     </div>
     <br>
     <div class = "container card adminCard">
-        <h2>Lista de Clases</h2>
+        <h2>Classes:</h2>
 
         {{#each allClasses}}
             <a href="admin/class/{{_id}}">{{name}} {{subName}}</a>
