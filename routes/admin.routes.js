@@ -69,7 +69,7 @@ router.post("/:idUser/edit", uploader.single("image"), async (req, res, next) =>
 
       // pull the non-selected classes
       for (let i = 0; i < user.class.length; i++){
-        if (classArray.includes(user.class[i]) === false){
+        if (classArray.includes(user.class[i].toString()) === false){
           await User.findByIdAndUpdate(user._id, {$pull: {class: user.class[i]}});
         }  
       }
