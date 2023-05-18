@@ -17,7 +17,7 @@ router.post("/signup", async (req, res, next) => {
     const { email, password, firstName, lastName, image } = req.body;
     const regexPattern =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-    const foundEmail = await User.findOne({ email: email });
+    const foundEmail = await User.find({ email: email });
     
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
@@ -68,7 +68,7 @@ router.get("/login", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const foundUser = await User.findOne({ email: email });
+    const foundUser = await User.find({ email: email });
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/login", {
