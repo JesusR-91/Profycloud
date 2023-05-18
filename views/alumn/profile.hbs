@@ -23,7 +23,7 @@
        
             <br>
             {{#if this.isTutor}}
-                <a href="/alumn/{{./_id}}/edit" class="btn btn-secondary">Edit</a>
+                <a href="/alumn/{{./_id}}/edit" class="btn btn-secondary buton" style="background-color: #010158">Edit</a>
             {{/if}}
         </div>
 
@@ -32,7 +32,7 @@
     <div>
         <h5>Comments: </h5>
         <br>
-        <a href="/alumn/{{./_id}}/newcomment" class="btn btn-secondary ">Add a new comment</a>
+        <a href="/alumn/{{./_id}}/newcomment" class="btn btn-secondary buton" style="background-color: #010158">Add a new comment</a>
         <br>  
         <div class = "comment-list">
             {{#each this.alumnComments}}

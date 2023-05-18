@@ -16,6 +16,7 @@ h1 {
 
 .web {
   background-color: #f1ead7;  
+  font-weight: bold;
 }
 
 .index{
@@ -64,10 +65,13 @@ h1 {
   width: 450px;
 }
 .user-info{
-  padding: 10%;
+  padding: 11%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.user-info p {
+  left: 20px
 }
 .perfilUsuario ul {
   list-style-type: none;
@@ -147,7 +151,7 @@ h1 {
   box-shadow: 7px 5px 5px grey;
 
 }
-.btn {
+.buton {
   width: 100px;
 }
 
