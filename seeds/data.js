@@ -74,12 +74,12 @@ const Alumn = require('../models/Alumn.model');
 require('../db/index');
 const alumnsData = require('./alumn.json')
 
-console.log(alumnsData)
+// console.log(alumnsData)
 
 alumnsData.forEach(alumn =>{
   classes.forEach(clase => {
     if (alumn.classroom === `${clase.name} ${clase.subName}`){
-      clase.alumns.push(alumn.id);
+      clase.alumns.push(alumn._id);
     }
   })
 })
