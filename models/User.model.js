@@ -7,38 +7,40 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       lowercase: true,
-      trim: true
+      trim: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     firstName: String,
     lastName: String,
     image: {
-      type:String,
+      type: String,
       default: "/images/logo.png",
     },
     rol: {
       type: [String],
-      enum: ['professor', 'tutor'],
-      default: 'professor',
+      enum: ["professor", "tutor"],
+      default: "professor",
     },
     tutorClass: {
       type: Schema.Types.ObjectId,
-      ref: 'Class',
+      ref: "Class",
     },
     admin: {
       type: Boolean,
       default: false,
     },
-    class: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Class',
-    }],
+    class: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Class",
+      },
+    ],
   },
-  { 
-    timestamps: true
+  {
+    timestamps: true,
   }
 );
 

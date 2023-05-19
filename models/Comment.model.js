@@ -1,21 +1,22 @@
 const { Schema, model } = require("mongoose");
 
-const commentSchema = new Schema ({
+const commentSchema = new Schema(
+  {
     comment: String,
     madeBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     madeTo: {
-        type: Schema.Types.ObjectId,
-        ref: 'Alumn',
+      type: Schema.Types.ObjectId,
+      ref: "Alumn",
     },
-},
-{ 
-    timestamps: true
-}
-)
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Comment = model('Comment', commentSchema);
+const Comment = model("Comment", commentSchema);
 
 module.exports = Comment;

@@ -2,7 +2,6 @@ const router = require("express").Router();
 const User = require("../models/User.model.js");
 const bcrypt = require("bcryptjs");
 
-
 //GET "/signup"
 router.get("/signup", async (req, res, next) => {
   try {
@@ -18,7 +17,7 @@ router.post("/signup", async (req, res, next) => {
     const regexPattern =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
     const foundEmail = await User.findOne({ email: email });
-    
+
     //!Usuario y Passwords vacios
     if (email === "" || password === "") {
       res.render("auth/signup", {
@@ -29,8 +28,7 @@ router.post("/signup", async (req, res, next) => {
     //! Patron Password
     if (regexPattern.test(password) === false) {
       res.render("auth/signup", {
-        errorMessage:
-          "The code of honour must be more intricate.",
+        errorMessage: "The code of honour must be more intricate.",
       });
       return;
     }
@@ -111,6 +109,8 @@ router.get("/logout", async (req, res, next) => {
     req.session.destroy(() => {
       res.redirect("/");
     });
-  } catch (error) {next(error)}
+  } catch (error) {
+    next(error);
+  }
 });
 module.exports = router;

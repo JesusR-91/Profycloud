@@ -1,24 +1,27 @@
-<div class = "card-group classList admin">
+<div class="card-group classList admin">
 
-
-    <div class = "container card">
+  <div class="container card">
     <h2>Users: </h2>
-        {{#each allUsers}}
+    {{#each allUsers}}
 
-        <a href="admin/{{_id}}">{{firstName}} {{lastName}}</a>
-        <br>
+      <a href="admin/{{_id}}">{{firstName}} {{lastName}}</a>
+      <br />
 
-        {{/each}}
-    </div>
-    <br>
-    <div class = "container card adminCard">
-        <h2>Classes:</h2>
+    {{/each}}
+  </div>
+  <br />
+  <div class="container card adminCard">
+    <h2>Classes:</h2>
 
-        {{#each allClasses}}
-            <a href="admin/class/{{_id}}">{{name}} {{subName}}</a>
-            <br>
-        {{/each}}
+    {{#each allClasses}}
+      <a href="admin/class/{{_id}}">{{name}} {{subName}}</a>
+      <br />
+    {{/each}}
 
-        <a href="/admin/class/create/newClass" class = "btn btn-secondary buton" style="background-color: #010158"> Create a new Class</a>
-    </div>
+    <a
+      href="/admin/class/create/newClass"
+      class="btn btn-secondary buton"
+      style="background-color: #010158"
+    > Create a new Class</a>
+  </div>
 </div>

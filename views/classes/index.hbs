@@ -1,18 +1,18 @@
 <div>
-    <h2><b>Classes:</b></h2>
+  <h2><b>Classes:</b></h2>
 
-    <div class="classList allCards card-group ">
-        {{#each classes}}
-            <div  class="container card">
-                <h5><a href="/class/{{_id}}">{{name}} {{subName}}</a></h5>
-                <ul class="alumns">
-                {{#each alumns}}
-                    <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
-                    <br>
-                {{/each}}
-                </ul>
-                <br>
-            </div>
-        {{/each}}
-    </div>
+  <div class="classList allCards card-group">
+    {{#each classes}}
+      <div class="container card">
+        <h5><a href="/class/{{_id}}">{{name}} {{subName}}</a></h5>
+        <ul class="alumns">
+          {{#each alumns}}
+            <a href="/alumn/{{_id}}/details">{{firstName}} {{lastName}}</a>
+            <br />
+          {{/each}}
+        </ul>
+        <br />
+      </div>
+    {{/each}}
+  </div>
 </div>
