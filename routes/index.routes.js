@@ -35,7 +35,7 @@ router.get("/", async (req, res, next) => {
       allComments = JSON.parse(JSON.stringify(allComments));
       alumnsComments.forEach((alumn) => {
         allComments.forEach((comment) => {
-          comment.madeTo = alumn.madeTo;
+          if(comment.madeTo === alumn.madeTo._id){comment.madeTo = alumn.madeTo}
           let newDate =comment.createdAt.toString().slice(0,10) + ' ' + comment.createdAt.toString().slice(11,16);
           comment.createdAt = newDate;
         });
