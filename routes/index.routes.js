@@ -26,16 +26,18 @@ router.get("/", async (req, res, next) => {
       const alumns = await Alumn.find({
         classroom: `${user.tutorClass.name} ${user.tutorClass.subName}`,
       });
-      const allComments = await Comment.find({ madeTo: alumns }).populate(
+      let allComments = await Comment.find({ madeTo: alumns }).populate(
         "madeBy"
       );
-      const alumnsComments = await Comment.find({ madeTo: alumns })
+      let alumnsComments = await Comment.find({ madeTo: alumns })
         .populate("madeTo")
         .select({ madeTo: 1 });
-
+      allComments = JSON.parse(JSON.stringify(allComments));
       alumnsComments.forEach((alumn) => {
         allComments.forEach((comment) => {
           comment.madeTo = alumn.madeTo;
+          let newDate =comment.createdAt.toString().slice(0,10) + ' ' + comment.createdAt.toString().slice(11,16);
+          comment.createdAt = newDate;
         });
       });
       res.render("index", { allComments });

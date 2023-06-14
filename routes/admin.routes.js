@@ -200,7 +200,7 @@ router.post("/class/create/newClass", async (req, res, next) => {
         $push: { class: newClass._id },
       });
     }
-    res.redirect("/admin/class/class");
+    res.redirect("/admin");
   } catch (error) {
     next(error);
   }
