@@ -30,18 +30,18 @@ router.get("/", async (req, res, next) => {
         "madeBy"
       );
       let alumnsComments = await Comment.find({ madeTo: alumns })
-        .populate("madeTo")
-        .select({ madeTo: 1 });
-      allComments = JSON.parse(JSON.stringify(allComments));
-      alumnsComments.forEach((alumn) => {
-        allComments.forEach((comment) => {
+        .populate("madeTo");
+      cloneAllComments = JSON.parse(JSON.stringify(allComments));
+      cloneAlumnsComments = JSON.parse(JSON.stringify(alumnsComments));
+      cloneAlumnsComments.forEach((alumn) => {
+        cloneAllComments.forEach((comment) => {
           if(comment.madeTo === alumn.madeTo._id){comment.madeTo = alumn.madeTo}
           console.log(comment)
           let newDate =comment.createdAt.toString().slice(0,10) + ' ' + comment.createdAt.toString().slice(11,16);
           comment.createdAt = newDate;
         });
       });
-      res.render("index", { allComments });
+      res.render("index", { cloneAllComments });
     }
     res.render("index");
   } catch (error) {
